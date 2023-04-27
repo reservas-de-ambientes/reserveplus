@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  server:
+    container_name: server
+    hostname: server
+    build:
+      context: ./server
+    ports:
+      - "1337:1337"
+    volumes:
+      - "./server:/app"
+  client:
+    container_name: client
+    hostname: client
+    build:
+      context: ./client
+      dockerfile: dev.Dockerfile
+    environment:
+      NEXT_PUBLIC_API_URL: http://0.0.0.0:1337/api
+      NEXTAUTH_SECRET: 5447a6d673eb747a479bc0bc00a93651
+      NEXTAUTH_URL: http://0.0.0.0:3000
+      NEXTAUTH_URL_INTERNAL: http://client:3000
+    volumes:
+      - "./client:/app"
+      - "./client/src:/app/src"
+      - ./client/public:/app/public
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - reservas_network
+    depends_on:
+      - server
+
+networks:
+  reservas_network:
+    external: false
+    name: reservas_network

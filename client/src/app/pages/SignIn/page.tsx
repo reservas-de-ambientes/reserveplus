@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { ToastContainer } from "react-toastify";
 
 import { useToastNotificationStore } from "@/store";
 import { ErrorsMessages } from "@/utils";
@@ -16,7 +15,7 @@ type formDataProps = {
 
 const SignIn = () => {
   const { push } = useRouter();
-  const { isVisible, show } = useToastNotificationStore();
+  const { show } = useToastNotificationStore();
   const [formData, setFormData] = useState({} as formDataProps);
   const [loading, setLoading] = useState(false);
 
@@ -77,14 +76,19 @@ const SignIn = () => {
           <Button
             type="submit"
             className="w-full px-4 py-2 mt-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-green-700 focus:ring-green-500"
-            disabled={loading}
+            disabled={loading || !formData.email || !formData.password}
           >
             Salvar
           </Button>
+          <Button
+            type="button"
+            className="w-full px-4 py-2 mt-8 text-sm font-medium text-black bg-white shadow-none "
+            onClick={() => push("/")}
+          >
+            Entre sem fazer login
+          </Button>
         </form>
       </div>
-
-      {isVisible && <ToastContainer />}
     </div>
   );
 };
