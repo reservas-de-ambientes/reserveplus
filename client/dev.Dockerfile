@@ -30,4 +30,3 @@ CMD \
   elif [ -f pnpm-lock.yaml ]; then pnpm dev; \
   else yarn dev; \
   fi
-

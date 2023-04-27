@@ -6,10 +6,23 @@ services:
     hostname: server
     build:
       context: ./server
+    environment:
+      HOST: 0.0.0.0
+      PORT: 1337
+      APP_KEYS: rHI0GQaOBbGpgKIlWPoIEg==,rHISyIBBaL+b5xSer+IMig==,sDZCAQ5zP+Z76GlazrjJpg==,arbUlg8oMIDHis7yDg3fXQ==
+      API_TOKEN_SALT: pkzp8CbAKjx1mAXgxkmxvA==
+      ADMIN_JWT_SECRET: r+wVmbxrraQbir5qD2TOZQ==
+      TRANSFER_TOKEN_SALT: 6UCJkVMvwvj2amU9MbCs3g==
+      # Database
+      DATABASE_CLIENT: sqlite
+      DATABASE_FILENAME: .tmp/data.db
+      JWT_SECRET: zBmcnlQzN/lxxwR03f8UnA==
     ports:
       - "1337:1337"
     volumes:
       - "./server:/app"
+    networks:
+      - reservas_network
   client:
     container_name: client
     hostname: client
@@ -17,10 +30,9 @@ services:
       context: ./client
       dockerfile: dev.Dockerfile
     environment:
-      NEXT_PUBLIC_API_URL: http://0.0.0.0:1337/api
+      NEXT_PUBLIC_API_URL: http://server:1337/api
       NEXTAUTH_SECRET: 5447a6d673eb747a479bc0bc00a93651
-      NEXTAUTH_URL: http://0.0.0.0:3000
-      NEXTAUTH_URL_INTERNAL: http://client:3000
+      NEXTAUTH_URL: http://localhost:3000/api/auth
     volumes:
       - "./client:/app"
       - "./client/src:/app/src"
@@ -35,5 +47,6 @@ services:
 
 networks:
   reservas_network:
-    external: false
-    name: reservas_network
+    driver: bridge
+    # external: false
+    # name: reservas_network
