@@ -3,26 +3,75 @@ version: "3"
 services:
   server:
     container_name: server
-    hostname: server
     build:
       context: ./server
+    image: reservas_server
+    restart: unless-stopped
+    env_file: ./server/.env
     environment:
-      HOST: 0.0.0.0
-      PORT: 1337
-      APP_KEYS: rHI0GQaOBbGpgKIlWPoIEg==,rHISyIBBaL+b5xSer+IMig==,sDZCAQ5zP+Z76GlazrjJpg==,arbUlg8oMIDHis7yDg3fXQ==
-      API_TOKEN_SALT: pkzp8CbAKjx1mAXgxkmxvA==
-      ADMIN_JWT_SECRET: r+wVmbxrraQbir5qD2TOZQ==
-      TRANSFER_TOKEN_SALT: 6UCJkVMvwvj2amU9MbCs3g==
-      # Database
-      DATABASE_CLIENT: sqlite
-      DATABASE_FILENAME: .tmp/data.db
-      JWT_SECRET: zBmcnlQzN/lxxwR03f8UnA==
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: serverDB
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PORT: 5432
+      JWT_SECRET: 8M/rIlaBLdptTpPUFYj4Ow==
+      ADMIN_JWT_SECRET: dz9jgGgyS8jw6vnnlXebXA==
+      DATABASE_PASSWORD: strapi
+      NODE_ENV: development
+    volumes:
+      - ./server/config:/opt/app/config
+      - ./server/src:/opt/app/src
+      - ./server/package.json:/opt/package.json
+      - ./server/package-lock.json:/opt/package-lock.json # Replace with package-lock.json if using npm
+      - ./server/.env:/opt/app/.env
     ports:
       - "1337:1337"
-    volumes:
-      - "./server:/app"
     networks:
       - reservas_network
+    depends_on:
+      - serverDB
+
+  serverDB:
+    image: postgres:12.0-alpine
+    container_name: serverDB
+    platform: linux/amd64 #for platform error on Apple M1 chips
+    restart: unless-stopped
+    env_file: ./server/.env
+    environment:
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
+      POSTGRES_DB: strapi
+    volumes:
+      # - strapi-data:/var/lib/postgresql/data/ #using a volume
+      - ./server/data:/var/lib/postgresql/data/ # if you want to use a bind folder
+    ports:
+      - "5432:5432"
+    networks:
+      - reservas_network
+
+  # server_teste:
+  #   container_name: server_teste
+  #   hostname: server_teste
+  #   build:
+  #     context: ./server-teste
+  #   environment:
+  #     HOST: 0.0.0.0
+  #     PORT: 1337
+  #     APP_KEYS: rHI0GQaOBbGpgKIlWPoIEg==,rHISyIBBaL+b5xSer+IMig==,sDZCAQ5zP+Z76GlazrjJpg==,arbUlg8oMIDHis7yDg3fXQ==
+  #     API_TOKEN_SALT: pkzp8CbAKjx1mAXgxkmxvA==
+  #     ADMIN_JWT_SECRET: r+wVmbxrraQbir5qD2TOZQ==
+  #     TRANSFER_TOKEN_SALT: 6UCJkVMvwvj2amU9MbCs3g==
+  #     # Database
+  #     DATABASE_CLIENT: sqlite
+  #     DATABASE_FILENAME: .tmp/data.db
+  #     JWT_SECRET: zBmcnlQzN/lxxwR03f8UnA==
+  #   ports:
+  #     - "1337:1337"
+  #   volumes:
+  #     - "./server-teste:/app"
+  #   networks:
+  #     - reservas_network
+
   client:
     container_name: client
     hostname: client
@@ -45,8 +94,10 @@ services:
     depends_on:
       - server
 
+volumes:
+  strapi-data:
+
 networks:
   reservas_network:
     driver: bridge
-    # external: false
-    # name: reservas_network
+    name: reservas_network

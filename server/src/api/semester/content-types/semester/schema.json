@@ -4,8 +4,7 @@
   "info": {
     "singularName": "semester",
     "pluralName": "semesters",
-    "displayName": "Semester",
-    "description": ""
+    "displayName": "Semester"
   },
   "options": {
     "draftAndPublish": true

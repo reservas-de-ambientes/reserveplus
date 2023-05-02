@@ -4,8 +4,7 @@
   "info": {
     "singularName": "reservation",
     "pluralName": "reservations",
-    "displayName": "Reservation",
-    "description": ""
+    "displayName": "Reservation"
   },
   "options": {
     "draftAndPublish": true

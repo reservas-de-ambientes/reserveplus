@@ -4,8 +4,7 @@
   "info": {
     "singularName": "ambience",
     "pluralName": "ambiences",
-    "displayName": "Ambience",
-    "description": ""
+    "displayName": "Ambience"
   },
   "options": {
     "draftAndPublish": true

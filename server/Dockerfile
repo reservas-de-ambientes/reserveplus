@@ -1,20 +1,14 @@
-# Use a imagem oficial do node como base
-FROM node:18
-
-# Define o diretório de trabalho como /app
-WORKDIR /app
-
-# Copie o package.json e o package-lock.json para o diretório de trabalho
-COPY package*.json ./
-
-# Instale as dependências do cliente e do servidor
+FROM node:16
+# Installing libvips-dev for sharp Compatability
+RUN apt-get update && apt-get install libvips-dev -y
+ARG NODE_ENV=development
+ENV NODE_ENV=${NODE_ENV}
+WORKDIR /opt/
+COPY ./package.json ./package-lock.json ./
+ENV PATH /opt/node_modules/.bin:$PATH
 RUN npm install
-
-# Copie o package.json e o package-lock.json para o diretório de trabalho
-COPY . .
-
-# Exponha as portas do cliente e do servidor
+WORKDIR /opt/app
+COPY ./ .
+RUN npm run build
 EXPOSE 1337
-
-# Defina o comando padrão para iniciar o cliente e o servidor
 CMD ["npm", "run", "develop"]
