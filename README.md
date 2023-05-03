@@ -22,14 +22,7 @@ Sistemas de Reservas de ambientes
   npm install
 ```
 
-3. Instale as dependências do Back-end (server):
-```bash
-  cd nome-do-projeto
-  cd server
-  npm install
-```
-
-4. Instale as dependências do Back-end Teste (server-teste):
+3. Instale as dependências do Back-end Teste (server-teste):
 ```bash
   cd nome-do-projeto
   cd server-teste
@@ -47,6 +40,11 @@ Sistemas de Reservas de ambientes
 2. No docker-compose.dev.yml, descomente o serviço server_teste e comente o serverDB e o server;
 
 3. Ainda docker-compose.dev.yml, no serviço client mude de server para server_teste no depends_on
+
+4. Rode o comando para criar a network com o nome reservas_network
+```bash
+  docker network create reservas_network
+```
 
 ## Iniciar
 
