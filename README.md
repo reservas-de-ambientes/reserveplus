@@ -2,24 +2,56 @@
 
 Sistemas de Reservas de ambientes
 
-## Passo a passo
+## Pré-requisitos
 
-Entre no client e crie o arquivo .env.local e copie o conteudo do .env.example
+* Node.js
+* Docker
+* Outras dependências do projeto
 
+## Instalação
+
+1. Clone o repositório do projeto:
+```bash
+  git clone https://github.com/igor-cotrim/reservas.git
+```
+
+2. Instale as dependências do Front-end (client):
+```bash
+  cd nome-do-projeto
+  cd client
+  npm install
+```
+
+3. Instale as dependências do Back-end (server):
+```bash
+  cd nome-do-projeto
+  cd server
+  npm install
+```
+
+4. Instale as dependências do Back-end Teste (server-teste):
+```bash
+  cd nome-do-projeto
+  cd server-teste
+  npm install
+```
+
+## Configuração
+
+1. Entre no client e crie o arquivo .env.local e copie o conteudo do .env.example:
 ```bash
   cd client
   touch .env.local
 ```
 
-Volte para o arquivo padrao e faça o build com o Docker
+2. No docker-compose.dev.yml, descomente o serviço server_teste e comente o serverDB e o server;
+
+3. Ainda docker-compose.dev.yml, no serviço client mude de server para server_teste no depends_on
+
+## Iniciar
+
+1. Rode o comando na raiz do projeto
 
 ```bash
-  cd ..
-  docker build -t reservas .
-```
-
-Apos terminar o build rode o comando para levantar o serviços do backend e frontend na porta 1337 e 3000
-
-```bash
-  docker run -p 3000:3000 -p 1337:1337 reservas
+  docker-compose -f docker-compose.dev.yml up --build
 ```
