@@ -44,6 +44,7 @@ const AmbienceForm = () => {
                   legend="Selecione o tipo de ambiente"
                   options={[
                     { title: "Laboratório", value: "Laboratório" },
+                    { title: "Sala", value: "Sala" },
                     { title: "Outros", value: "Outros" },
                   ]}
                   value={selectedAmbience?.type}

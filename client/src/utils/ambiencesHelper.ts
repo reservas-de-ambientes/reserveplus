@@ -12,7 +12,12 @@ export const formatAmbienceData = (
   return {
     id: ambience.id,
     value: ambience.attributes.value,
-    type: ambience.attributes.type === "laboratory" ? "Laboratório" : "Outros",
+    type:
+      ambience.attributes.type === "laboratory"
+        ? "Laboratório"
+        : ambience.attributes.type === "class"
+        ? "Sala"
+        : "Outros",
     availability: ambience.attributes.availability,
     dependsOnReservation: ambience.attributes.dependsOnReservation
       ? "Sim"

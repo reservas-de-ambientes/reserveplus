@@ -91,6 +91,7 @@ const Ambiences = () => {
           <AmbienceFilter />
         </Modal>
       )}
+
       {modalType === "view" && (
         <Modal>
           <AmbienceForm />

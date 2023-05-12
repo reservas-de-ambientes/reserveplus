@@ -7,6 +7,11 @@ export const filtersOptions = () => {
     },
     {
       id: 2,
+      title: "Sala",
+      value: "class",
+    },
+    {
+      id: 3,
       title: "Outros",
       value: "others",
     },

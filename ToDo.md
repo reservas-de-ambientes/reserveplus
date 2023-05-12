@@ -11,7 +11,7 @@
 [x] - Mudar nome Salvar para Acessar
 
 ---------------------------------AMBIENTES--------------------------------------
-[x] - Labs Salas e outros
+[x] - Adicionar a opcao de Sala, ficando: Lab, Sala e Outros
 
 -----------------------------SOLICITACAO----------------------------------------
 [x] - Mudar o Status para mais proximo das actions
