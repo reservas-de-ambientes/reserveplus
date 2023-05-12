@@ -17,27 +17,6 @@ export const Data = () => {
     columns: [
       { Header: "Título", accessor: "title" },
       {
-        Header: "Status",
-        accessor: "status",
-        Cell: ({ value }: any) =>
-          value === "pending" ? (
-            <ClockIcon
-              title="Pendente"
-              className="w-full text-orange-400 h-7"
-            />
-          ) : value === "approved" ? (
-            <CheckCircleIcon
-              title="Aprovado"
-              className="w-full text-green-400 h-7"
-            />
-          ) : (
-            <XCircleIcon
-              title="Reprovado"
-              className="w-full text-red-400 h-7 "
-            />
-          ),
-      },
-      {
         Header: "Ambiente",
         accessor: "ambience",
         Cell: ({ value }: any) => value?.value,
@@ -46,6 +25,36 @@ export const Data = () => {
         Header: "Solicitante",
         accessor: "requester",
         Cell: ({ value }: any) => value?.name,
+      },
+      {
+        Header: "Status",
+        accessor: "status",
+        Cell: ({ value }: any) =>
+          value === "pending" ? (
+            <div className="flex items-center justify-center w-full">
+              <ClockIcon
+                title="Pendente"
+                className="mr-2 text-orange-400 h-7"
+              />
+              Pendente
+            </div>
+          ) : value === "approved" ? (
+            <div className="flex items-center justify-center w-full">
+              <CheckCircleIcon
+                title="Aprovado"
+                className="mr-2 text-green-400 h-7"
+              />
+              Aprovado
+            </div>
+          ) : (
+            <div className="flex items-center justify-center w-full">
+              <XCircleIcon
+                title="Reprovado"
+                className="mr-2 text-red-400 h-7 "
+              />
+              Reprovado
+            </div>
+          ),
       },
     ],
   };

@@ -54,6 +54,10 @@
       "relation": "manyToOne",
       "target": "api::ambience.ambience",
       "inversedBy": "reservations"
+    },
+    "reasonForDisapproved": {
+      "type": "text",
+      "maxLength": 255
     }
   }
 }

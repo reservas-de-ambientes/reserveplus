@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
 import { FunnelIcon } from "@heroicons/react/24/outline";
 
 import {
   useModalStore,
   usePaginationStore,
   useSolicitationStore,
+  useToastNotificationStore,
 } from "@/store";
 import { useAuth } from "@/hooks";
 import { solicitationQueries } from "@/queries";
@@ -25,13 +27,16 @@ const Solicitations = () => {
   const {
     fetchData,
     paginationData,
-    changeStatusSolicitation,
+    changeStatusAndReasonSolicitation,
     isLoading,
     hasFilteredAmbiences,
   } = useSolicitationStore();
   const { toggleVisibility, modalType } = useModalStore();
   const { pagination, setPagination } = usePaginationStore();
+  const { isVisible, show } = useToastNotificationStore();
   const { session } = useAuth();
+
+  console.log("session", session);
 
   const { query } = solicitationQueries(pagination, Number(session?.user?.id!));
 
@@ -80,6 +85,8 @@ const Solicitations = () => {
         loading={isLoading}
       />
 
+      {isVisible && <ToastContainer />}
+
       {modalType === "filter" && (
         <Modal>
           <SolicitationFilter />
@@ -91,19 +98,28 @@ const Solicitations = () => {
           <SolicitationViewModal />
         </Modal>
       )}
+
       {modalType === "approved" && (
         <ConfirmationModal
           title="Confirmação de aprovação"
           description="Ao fazer isso a solicitação será aprovada. Tem certeza que deseja aprova-la?"
-          action={() => changeStatusSolicitation("approved", query)}
+          action={() => {
+            changeStatusAndReasonSolicitation("approved", "", query);
+            show("Solicitação aprovada com sucesso.", "success");
+          }}
           approvedButton
         />
       )}
+
       {modalType === "delete" && (
         <ConfirmationModal
           title="Confirmação de reprovação"
           description="Ao fazer isso a solicitação será reprovada. Tem certeza que deseja reprova-la?"
-          action={() => changeStatusSolicitation("disapproved", query)}
+          action={(reason) => {
+            changeStatusAndReasonSolicitation("disapproved", reason, query);
+            show("Solicitação reprovada com sucesso.", "success");
+          }}
+          solicitationDisapproved
         />
       )}
     </PrivateRouteWrapper>

@@ -1,18 +1,20 @@
 "use client";
 
+import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 import { useModalStore } from "@/store";
-import { Button } from "@/components";
+import { Button, Textarea } from "@/components";
 
 import { Modal } from ".";
 
 type ConfirmationModalProps = {
   title: string;
   description: string;
-  action: () => void;
+  action: (reason?: string) => void;
   approvedButton?: boolean;
+  solicitationDisapproved?: boolean;
 };
 
 const ConfirmationModal = ({
@@ -20,8 +22,10 @@ const ConfirmationModal = ({
   description,
   action,
   approvedButton = false,
+  solicitationDisapproved = false,
 }: ConfirmationModalProps) => {
   const { toggleVisibility } = useModalStore();
+  const [data, setData] = useState({ reason: "" });
 
   return (
     <Modal>
@@ -37,8 +41,22 @@ const ConfirmationModal = ({
       <div className="pb-4 bg-white sm:p-1">
         <div className="sm:flex sm:items-start">
           <div className="mt-3 text-center sm:mt-0 sm:text-left sm:w-full">
-            <div>
-              <div className="pl-4 pr-4 my-5 text-center">{description}</div>
+            <div className="my-4 text-center ">{description}</div>
+            <div className="px-12 my-2 text-center">
+              {solicitationDisapproved && (
+                <Textarea
+                  label="Motivo"
+                  name="reason"
+                  value={data.reason}
+                  required
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                    setData((prev) => ({
+                      ...prev,
+                      reason: e.target.value,
+                    }))
+                  }
+                />
+              )}
             </div>
           </div>
         </div>
@@ -46,6 +64,7 @@ const ConfirmationModal = ({
       <div className="gap-4 px-4 py-3 bg-gray-50 sm:flex sm:flex-row-reverse sm:px-6">
         <Button
           type="button"
+          disabled={data.reason === "" && solicitationDisapproved}
           className={`${
             approvedButton
               ? "bg-green-600 hover:bg-green-700 focus:ring-green-500"
@@ -53,7 +72,7 @@ const ConfirmationModal = ({
           }inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white  border border-transparent rounded-md shadow-sm disabled:cursor-not-allowed disabled:bg-gray-500 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:w-auto sm:text-sm `}
           onClick={() => {
             toggleVisibility(false);
-            action();
+            action(data.reason);
           }}
         >
           Sim

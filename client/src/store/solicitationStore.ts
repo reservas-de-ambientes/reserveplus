@@ -13,7 +13,11 @@ interface ISolicitation {
   hasFilteredAmbiences: boolean;
   selectedFilter: Pick<reservationModel, "status"> | null;
   fetchData: (params?: any, filters?: any) => void;
-  changeStatusSolicitation: (status: string, params?: any) => void;
+  changeStatusAndReasonSolicitation: (
+    status: string,
+    reason?: string,
+    params?: any
+  ) => void;
   selectSolicitation: (id?: number) => void;
 }
 
@@ -37,13 +41,14 @@ export const useSolicitationStore = create<ISolicitation>((set, get) => ({
       isLoading: false,
     });
   },
-  changeStatusSolicitation: async (status, params) => {
+  changeStatusAndReasonSolicitation: async (status, reason, params) => {
     const selectedSolicitation = get().selectedSolicitation;
 
     const body = {
       data: {
         ...selectedSolicitation,
         status: status,
+        reasonForDisapproved: reason,
       },
     };
 

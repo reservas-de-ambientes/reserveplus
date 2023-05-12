@@ -14,6 +14,7 @@ export type reservationModel = {
   end: stringOrDate;
   isSemester: boolean;
   status: string;
+  reasonForDisapproved?: string;
   requester: Pick<userModel, "id" | "name" | "type">;
 };
 
@@ -26,6 +27,7 @@ export type reservationApiModel = {
     publishedAt: string;
     start: string;
     status: string;
+    reasonForDisapproved?: string;
     title: string;
     updatedAt: string;
     ambience?: {

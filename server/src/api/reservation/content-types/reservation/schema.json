@@ -4,7 +4,8 @@
   "info": {
     "singularName": "reservation",
     "pluralName": "reservations",
-    "displayName": "Reservation"
+    "displayName": "Reservation",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -53,6 +54,10 @@
       "relation": "manyToOne",
       "target": "api::ambience.ambience",
       "inversedBy": "reservations"
+    },
+    "reasonForDisapproved": {
+      "type": "text",
+      "maxLength": 255
     }
   }
 }

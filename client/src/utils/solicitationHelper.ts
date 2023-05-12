@@ -10,6 +10,7 @@ export const formatReservationData = (
     end: new Date(reservation.attributes.end),
     isSemester: reservation.attributes.isSemester,
     status: reservation.attributes.status,
+    reasonForDisapproved: reservation.attributes.reasonForDisapproved,
     ambience: {
       id: reservation.attributes.ambience?.data.id!,
       value: reservation.attributes.ambience?.data.attributes.value!,
