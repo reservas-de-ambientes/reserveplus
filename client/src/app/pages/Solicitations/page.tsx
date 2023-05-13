@@ -27,6 +27,7 @@ const Solicitations = () => {
   const {
     fetchData,
     paginationData,
+    selectedFilter,
     changeStatusAndReasonSolicitation,
     isLoading,
     hasFilteredAmbiences,
@@ -35,8 +36,6 @@ const Solicitations = () => {
   const { pagination, setPagination } = usePaginationStore();
   const { isVisible, show } = useToastNotificationStore();
   const { session } = useAuth();
-
-  console.log("session", session);
 
   const { query } = solicitationQueries(pagination, Number(session?.user?.id!));
 
@@ -64,6 +63,25 @@ const Solicitations = () => {
           Solicitações
         </h1>
         <div className="inline-flex w-full gap-4 sm:w-auto">
+          {selectedFilter && (
+            <>
+              {selectedFilter.status && (
+                <div className="inline-flex items-center p-2 space-x-2 bg-white rounded-lg shadow-md">
+                  <span className="font-medium text-gray-700">
+                    {selectedFilter.status === "approved"
+                      ? "Aprovado"
+                      : "Reprovado"}
+                  </span>
+                  <button
+                    className="px-2 font-medium text-gray-700 border-l border-primary hover:text-red-400"
+                    onClick={() => fetchData(query)}
+                  >
+                    X
+                  </button>
+                </div>
+              )}
+            </>
+          )}
           <div className="relative inline-block ">
             <FunnelIcon
               title="Filtrar"

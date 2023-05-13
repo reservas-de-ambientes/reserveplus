@@ -31,6 +31,12 @@ const Ambiences = () => {
     selectedFilter!
   );
 
+  const handleRemoveFilter = (filter: string) => {
+    const filterData = { ...selectedFilter, [filter]: "" };
+
+    fetchData(queryWithFilters, filterData);
+  };
+
   useEffect(() => {
     (async () => {
       if (hasFilteredAmbiences) {
@@ -65,6 +71,42 @@ const Ambiences = () => {
           Ambientes
         </h1>
         <div className="inline-flex w-full gap-4 sm:w-auto">
+          {selectedFilter && (
+            <>
+              {selectedFilter.type && (
+                <div className="inline-flex items-center p-2 space-x-2 bg-white rounded-lg shadow-md">
+                  <span className="font-medium text-gray-700">
+                    {selectedFilter.type === "laboratory"
+                      ? "Laboratório"
+                      : selectedFilter.type === "class"
+                      ? "Sala"
+                      : "Outros"}
+                  </span>
+                  <button
+                    className="px-2 font-medium text-gray-700 border-l border-primary hover:text-red-400"
+                    onClick={() => handleRemoveFilter("type")}
+                  >
+                    X
+                  </button>
+                </div>
+              )}
+              {selectedFilter.availability && (
+                <div className="inline-flex items-center p-2 space-x-2 bg-white rounded-lg shadow-md">
+                  <span className="font-medium text-gray-700">
+                    {selectedFilter.availability === "available"
+                      ? "Disponível"
+                      : "Indisponível"}
+                  </span>
+                  <button
+                    className="px-2 font-medium text-gray-700 border-l border-primary hover:text-red-400"
+                    onClick={() => handleRemoveFilter("availability")}
+                  >
+                    X
+                  </button>
+                </div>
+              )}
+            </>
+          )}
           <div className="relative inline-block ">
             <FunnelIcon
               title="Filtrar"

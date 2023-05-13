@@ -32,7 +32,12 @@ export const useAmbiencesStore = create<IAmbiences>((set, get) => ({
     set({
       ambiences: formattedData,
       paginationData: meta.pagination,
-      hasFilteredAmbiences: !!filters ? true : false,
+      hasFilteredAmbiences: !!(
+        filters &&
+        (filters.type !== "" || filters.availability !== "")
+      )
+        ? true
+        : false,
       selectedFilter: filters,
       isLoading: false,
     });

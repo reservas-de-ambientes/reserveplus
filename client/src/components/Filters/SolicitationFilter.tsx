@@ -102,12 +102,12 @@ const SolicitationFilter = () => {
         <div>
           {hasFilteredAmbiences && (
             <Button
-              title="Remover filtro"
+              title="Remover todos os filtros"
               type="button"
               className="inline-flex justify-center w-full px-3 py-2 text-base font-medium text-white bg-red-500 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 sm:w-auto sm:text-sm hover:bg-red-700 focus:ring-red-500"
               onClick={handleRemoveFilters}
             >
-              Remover filtro
+              Remover todos os filtros
             </Button>
           )}
         </div>
