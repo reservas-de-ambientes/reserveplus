@@ -24,6 +24,7 @@ import {
   ReservationViewModal,
   ReservationForm,
   NoAuthenticatedViewModal,
+  CalendarFilter,
 } from "@/components";
 
 import { Event, Toolbar } from "./components";
@@ -40,7 +41,7 @@ const Calendar = () => {
     fetchData,
   } = useReservationStore();
   const { fetchData: fetchDataSemester, semesters } = useSemesterStore();
-  const { toggleVisibility } = useModalStore();
+  const { toggleVisibility, modalType } = useModalStore();
   const { isVisible, show } = useToastNotificationStore();
   const {
     addCalendarData,
@@ -75,6 +76,7 @@ const Calendar = () => {
       title: event.event.title,
       isSemester: event.event.isSemester,
       status: event.event.status,
+      color: event.event.color,
     };
 
     const response = await editReservation(event.event.id, newData);
@@ -97,7 +99,7 @@ const Calendar = () => {
   return (
     <div className="App">
       <DnDCalendar
-        views={["month", "week", "day"]}
+        views={["month", "week", "day", "agenda"]}
         messages={D.Messages()}
         selectable
         localizer={D.localizer}
@@ -136,9 +138,13 @@ const Calendar = () => {
 
       {isVisible && <ToastContainer />}
 
-      {calendarEvent === "selectEvent" ? (
+      {modalType !== "filter" && calendarEvent === "selectEvent" ? (
         <Modal>
           <ReservationViewModal />
+        </Modal>
+      ) : modalType === "filter" ? (
+        <Modal>
+          <CalendarFilter />
         </Modal>
       ) : !isAuthenticated ? (
         <Modal>

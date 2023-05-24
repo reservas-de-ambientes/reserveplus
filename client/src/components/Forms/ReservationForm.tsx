@@ -10,11 +10,19 @@ import {
   useModalStore,
   useCalendarStore,
   useAmbiencesStore,
+  useColorStore,
 } from "@/store";
 import { useAuth } from "@/hooks";
 import { reservationModel } from "@/models";
 import { reservationQueries } from "@/queries";
-import { Button, Error, Input, Select, Toggle } from "@/components";
+import {
+  Button,
+  ColorPicker,
+  Error,
+  Input,
+  Select,
+  Toggle,
+} from "@/components";
 
 import * as D from "./data";
 
@@ -32,8 +40,10 @@ const ReservationForm = ({ editedData }: ReservationFormProps) => {
     clearErrorMessage,
     setErrorMessage,
     fetchData,
+    selectedFilter,
   } = useReservationStore();
   const { calendarData } = useCalendarStore();
+  const { setColor } = useColorStore();
   const { ambiences } = useAmbiencesStore();
   const [formData, setFormData] = useState(
     editedData
@@ -43,11 +53,16 @@ const ReservationForm = ({ editedData }: ReservationFormProps) => {
           end: calendarData?.end!,
           status: "pending",
           isSemester: false,
+          color: "#039be5",
           requester: {
             id: Number(session?.user?.id!),
             name: session?.user?.name!,
             type: session?.user?.type!,
           },
+          ambience:
+            ambiences.find(
+              (item) => item.id === Number(selectedFilter?.value)
+            ) || {},
         } as reservationModel)
   );
 
@@ -104,12 +119,14 @@ const ReservationForm = ({ editedData }: ReservationFormProps) => {
                   <Toggle
                     label="É uma reserva semestral?"
                     description="Ao marcar isso sua reserva irá para todo o semestre"
-                    onChange={(e: boolean) =>
+                    onChange={(e: boolean) => {
+                      setColor(e ? "#e67c73" : "#039be5");
                       setFormData((prev) => ({
                         ...prev,
                         isSemester: e,
-                      }))
-                    }
+                        color: e ? "#e67c73" : "#039be5",
+                      }));
+                    }}
                     checked={formData.isSemester}
                     disabled={editedData ? true : false}
                   />
@@ -177,6 +194,14 @@ const ReservationForm = ({ editedData }: ReservationFormProps) => {
                   value={moment(formData?.end || calendarData?.end).format(
                     "YYYY-MM-DDTHH:mm"
                   )}
+                />
+                <ColorPicker
+                  label="Selecione a cor da reserva"
+                  color={formData.color}
+                  onChange={(color) => {
+                    setColor(color.hex);
+                    setFormData((prev) => ({ ...prev, color: color.hex }));
+                  }}
                 />
               </div>
             </div>

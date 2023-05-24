@@ -10,7 +10,7 @@ moment.locale("pt-br");
 
 export const localizer = momentLocalizer(moment);
 
-export const Messages = () => {
+export const Messages = (): any => {
   return useMemo(
     () => ({
       week: "Semana",
@@ -21,31 +21,27 @@ export const Messages = () => {
       next: "🡪",
       today: "Hoje",
       agenda: "Agenda",
+      date: "Data",
+      time: "Horário",
+      event: "Reserva",
+      noEventsInRange: (
+        <p className="h-[80vh] flex items-center justify-center text-2xl text-center text-primary">
+          Não há reservas neste período.
+        </p>
+      ),
+      showMore: (total: number) => `+${total} mais`,
+      allDay: "Dia inteiro",
     }),
     []
   );
 };
 
 export const getEventStyle = (event: any) => {
-  let backgroundColor = "#a7adb6";
-  let border = "1px solid #265985";
-  let color = "#fff";
-
-  switch (event.ambience?.availability) {
-    case "available":
-      backgroundColor = event.isSemester ? "#F6AD55" : "#2C5282";
-      border = event.isSemester ? "1px solid #265985" : "1px solid #F6AD55";
-      color = event.isSemester ? "#000" : "#fff";
-      break;
-    default:
-      break;
-  }
-
   const style = {
     borderRadius: "8px",
-    backgroundColor,
-    color,
-    border,
+    backgroundColor: event.color,
+    color: "#fff",
+    border: "1px solid #F6AD55",
   };
 
   return {
@@ -93,6 +89,7 @@ export const getReservationWithSemester = (
                 status: reservation.status,
                 requester: reservation.requester,
                 title: reservation.title,
+                color: reservation.color,
                 ambience: reservation.ambience,
                 start,
                 end,

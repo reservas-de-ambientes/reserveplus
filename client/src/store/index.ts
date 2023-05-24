@@ -1,5 +1,6 @@
 export * from "./ambiencesStore";
 export * from "./calendarStore";
+export * from "./colorStore";
 export * from "./modalStore";
 export * from "./paginationStore";
 export * from "./reservationStore";

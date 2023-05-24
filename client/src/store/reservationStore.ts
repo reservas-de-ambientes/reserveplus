@@ -15,6 +15,7 @@ interface IReservation {
   reservations: reservationModel[];
   filteredReservations: reservationModel[];
   hasFilteredReservations: boolean;
+  selectedFilter: { value: string; type: string } | null;
   errorMessage: string;
   paginationData: PaginationProps | null;
   fetchData: (params?: any, filters?: any) => void;
@@ -34,6 +35,7 @@ export const useReservationStore = create<IReservation>((set, get) => ({
   reservations: [],
   filteredReservations: [],
   hasFilteredReservations: false,
+  selectedFilter: null,
   errorMessage: "",
   paginationData: null,
   fetchData: async (params) => {
@@ -96,6 +98,7 @@ export const useReservationStore = create<IReservation>((set, get) => ({
     if (type.trim() === "" && value.trim() === "") {
       set({
         filteredReservations: [],
+        selectedFilter: null,
         hasFilteredReservations: false,
       });
     } else {
@@ -120,6 +123,7 @@ export const useReservationStore = create<IReservation>((set, get) => ({
 
         return {
           filteredReservations,
+          selectedFilter: { type, value },
           hasFilteredReservations: true,
         };
       });

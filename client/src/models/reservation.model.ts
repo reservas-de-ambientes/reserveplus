@@ -15,6 +15,7 @@ export type reservationModel = {
   isSemester: boolean;
   status: string;
   reasonForDisapproved?: string;
+  color?: string;
   requester: Pick<userModel, "id" | "name" | "type">;
 };
 
@@ -28,6 +29,7 @@ export type reservationApiModel = {
     start: string;
     status: string;
     reasonForDisapproved?: string;
+    color?: string;
     title: string;
     updatedAt: string;
     ambience?: {

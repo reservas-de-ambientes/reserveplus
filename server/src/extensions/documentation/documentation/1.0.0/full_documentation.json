@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-05-12T22:50:50.283Z"
+    "x-generation-date": "2023-05-24T13:46:38.507Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -135,6 +135,12 @@
                   "example": "string or id"
                 }
               },
+              "numberOfMachines": {
+                "type": "integer"
+              },
+              "peopleCapacity": {
+                "type": "integer"
+              },
               "reservations": {
                 "type": "array",
                 "items": {
@@ -148,12 +154,6 @@
                   ],
                   "example": "string or id"
                 }
-              },
-              "numberOfMachines": {
-                "type": "integer"
-              },
-              "peopleCapacity": {
-                "type": "integer"
               }
             }
           }
@@ -783,6 +783,12 @@
               }
             }
           },
+          "numberOfMachines": {
+            "type": "integer"
+          },
+          "peopleCapacity": {
+            "type": "integer"
+          },
           "reservations": {
             "type": "object",
             "properties": {
@@ -811,6 +817,20 @@
                         "isSemester": {
                           "type": "boolean"
                         },
+                        "status": {
+                          "type": "string",
+                          "enum": [
+                            "disapproved",
+                            "pending",
+                            "approved"
+                          ]
+                        },
+                        "color": {
+                          "type": "string"
+                        },
+                        "reasonForDisapproved": {
+                          "type": "string"
+                        },
                         "requester": {
                           "type": "object",
                           "properties": {
@@ -827,14 +847,6 @@
                               }
                             }
                           }
-                        },
-                        "status": {
-                          "type": "string",
-                          "enum": [
-                            "disapproved",
-                            "pending",
-                            "approved"
-                          ]
                         },
                         "semester": {
                           "type": "object",
@@ -973,6 +985,12 @@
                                         }
                                       }
                                     },
+                                    "numberOfMachines": {
+                                      "type": "integer"
+                                    },
+                                    "peopleCapacity": {
+                                      "type": "integer"
+                                    },
                                     "reservations": {
                                       "type": "object",
                                       "properties": {
@@ -992,12 +1010,6 @@
                                           }
                                         }
                                       }
-                                    },
-                                    "numberOfMachines": {
-                                      "type": "integer"
-                                    },
-                                    "peopleCapacity": {
-                                      "type": "integer"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -1051,9 +1063,6 @@
                             }
                           }
                         },
-                        "reasonForDisapproved": {
-                          "type": "string"
-                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -1106,12 +1115,6 @@
                 }
               }
             }
-          },
-          "numberOfMachines": {
-            "type": "integer"
-          },
-          "peopleCapacity": {
-            "type": "integer"
           },
           "createdAt": {
             "type": "string",
@@ -1213,6 +1216,20 @@
               "isSemester": {
                 "type": "boolean"
               },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "disapproved",
+                  "pending",
+                  "approved"
+                ]
+              },
+              "color": {
+                "type": "string"
+              },
+              "reasonForDisapproved": {
+                "type": "string"
+              },
               "requester": {
                 "oneOf": [
                   {
@@ -1223,14 +1240,6 @@
                   }
                 ],
                 "example": "string or id"
-              },
-              "status": {
-                "type": "string",
-                "enum": [
-                  "disapproved",
-                  "pending",
-                  "approved"
-                ]
               },
               "semester": {
                 "oneOf": [
@@ -1253,9 +1262,6 @@
                   }
                 ],
                 "example": "string or id"
-              },
-              "reasonForDisapproved": {
-                "type": "string"
               }
             }
           }
@@ -1330,6 +1336,20 @@
           },
           "isSemester": {
             "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "disapproved",
+              "pending",
+              "approved"
+            ]
+          },
+          "color": {
+            "type": "string"
+          },
+          "reasonForDisapproved": {
+            "type": "string"
           },
           "requester": {
             "type": "object",
@@ -1870,14 +1890,6 @@
               }
             }
           },
-          "status": {
-            "type": "string",
-            "enum": [
-              "disapproved",
-              "pending",
-              "approved"
-            ]
-          },
           "semester": {
             "type": "object",
             "properties": {
@@ -2015,6 +2027,12 @@
                           }
                         }
                       },
+                      "numberOfMachines": {
+                        "type": "integer"
+                      },
+                      "peopleCapacity": {
+                        "type": "integer"
+                      },
                       "reservations": {
                         "type": "object",
                         "properties": {
@@ -2043,6 +2061,20 @@
                                     "isSemester": {
                                       "type": "boolean"
                                     },
+                                    "status": {
+                                      "type": "string",
+                                      "enum": [
+                                        "disapproved",
+                                        "pending",
+                                        "approved"
+                                      ]
+                                    },
+                                    "color": {
+                                      "type": "string"
+                                    },
+                                    "reasonForDisapproved": {
+                                      "type": "string"
+                                    },
                                     "requester": {
                                       "type": "object",
                                       "properties": {
@@ -2059,14 +2091,6 @@
                                           }
                                         }
                                       }
-                                    },
-                                    "status": {
-                                      "type": "string",
-                                      "enum": [
-                                        "disapproved",
-                                        "pending",
-                                        "approved"
-                                      ]
                                     },
                                     "semester": {
                                       "type": "object",
@@ -2101,9 +2125,6 @@
                                           }
                                         }
                                       }
-                                    },
-                                    "reasonForDisapproved": {
-                                      "type": "string"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -2158,12 +2179,6 @@
                           }
                         }
                       },
-                      "numberOfMachines": {
-                        "type": "integer"
-                      },
-                      "peopleCapacity": {
-                        "type": "integer"
-                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -2215,9 +2230,6 @@
                 }
               }
             }
-          },
-          "reasonForDisapproved": {
-            "type": "string"
           },
           "createdAt": {
             "type": "string",

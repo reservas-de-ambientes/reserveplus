@@ -1,16 +1,18 @@
 import { buildQuery } from "@/utils";
 
-export const reservationQueries = (id: number) => {
+export const reservationQueries = (id?: number) => {
   const query = buildQuery({
     populate: "*",
     filters: {
       $or: [
         {
-          requester: {
-            id: {
-              $eq: id,
+          ...(id && {
+            requester: {
+              id: {
+                $eq: id,
+              },
             },
-          },
+          }),
           status: "pending",
         },
         {

@@ -42,6 +42,7 @@ module.exports = {
       );
     }
   },
+
   async beforeUpdate({ params }) {
     const ambience = await strapi.db.query("api::ambience.ambience").findOne({
       select: "availability",

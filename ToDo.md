@@ -2,8 +2,10 @@
 ----------------------------------DOING-----------------------------------------
 -------------------------------CALENDARIO---------------------------------------
 [] - Mudar nome "Calendar" para "Reservar"
-[] - Se tiver um filtro no calendar por sala, o modal vim com a sala ja preenchida
 [] - Calendario precisar de um filtro para aparecer as reservas
+[x] - Se tiver um filtro no calendar por sala, o modal vim com a sala ja preenchida
+[x] - Esquema de mudar de cor a reserva
+[x] - Adicionou visualizacao de Agenda
 ---------------------------------AMBIENTES--------------------------------------
 [] - Criar input de pesquisa
 --------------------------------PESQUISA----------------------------------------
@@ -32,4 +34,5 @@
 ------------------------------------DO------------------------------------------
 [] - Conta Admin no frontend
 [] - Atualizar o Next
+[] - Atualizar o Strapi
 --------------------------------------------------------------------------------

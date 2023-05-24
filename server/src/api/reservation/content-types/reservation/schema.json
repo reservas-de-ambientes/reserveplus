@@ -29,20 +29,25 @@
       "default": false,
       "required": true
     },
+    "status": {
+      "type": "enumeration",
+      "enum": ["disapproved", "pending", "approved"],
+      "required": true,
+      "default": "pending"
+    },
+    "color": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "reasonForDisapproved": {
+      "type": "text",
+      "maxLength": 255
+    },
     "requester": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
-    },
-    "status": {
-      "type": "enumeration",
-      "enum": [
-        "disapproved",
-        "pending",
-        "approved"
-      ],
-      "required": true,
-      "default": "pending"
     },
     "semester": {
       "type": "relation",
@@ -54,10 +59,6 @@
       "relation": "manyToOne",
       "target": "api::ambience.ambience",
       "inversedBy": "reservations"
-    },
-    "reasonForDisapproved": {
-      "type": "text",
-      "maxLength": 255
     }
   }
 }

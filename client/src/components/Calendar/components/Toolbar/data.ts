@@ -1,7 +1,5 @@
 import { View } from "react-big-calendar";
 
-import { useAmbiencesStore } from "@/store";
-
 type handleMiddleTextProps = {
   monthYear: string;
   view: View;
@@ -35,34 +33,20 @@ export const handleMiddleText = ({
       month: "long",
       day: "numeric",
     });
+  } else if (view === "agenda") {
+    const start = new Date(date);
+    const end = new Date(date);
+
+    end.setMonth(start.getMonth() + 1);
+
+    middleText = `${start.toLocaleString("pt-BR", {
+      month: "long",
+      day: "numeric",
+    })} - ${end.toLocaleString("pt-BR", {
+      month: "long",
+      day: "numeric",
+    })}`;
   }
 
   return middleText;
-};
-
-export const ToolbarOptions = () => {
-  const { ambiences } = useAmbiencesStore();
-
-  const filterReservationsOptions = [
-    {
-      id: 1,
-      value: "Pontual",
-      title: "Pontual",
-    },
-    {
-      id: 2,
-      value: "Semestral",
-      title: "Semestral",
-    },
-  ];
-
-  const filterAmbiencesOptions = ambiences
-    .filter((ambience) => ambience.dependsOnReservation === "Sim")
-    .map((ambience) => ({
-      id: ambience.id,
-      value: ambience.id.toString(),
-      title: ambience.value,
-    }));
-
-  return { filterReservationsOptions, filterAmbiencesOptions };
 };

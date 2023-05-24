@@ -7,9 +7,10 @@ import { useModalStore } from "@/store";
 
 type ModalContainerProps = {
   children: React.ReactNode;
+  blocked?: boolean;
 };
 
-const ModalContainer = ({ children }: ModalContainerProps) => {
+const ModalContainer = ({ children, blocked = false }: ModalContainerProps) => {
   const { open, toggleVisibility } = useModalStore();
 
   return (
@@ -17,7 +18,9 @@ const ModalContainer = ({ children }: ModalContainerProps) => {
       <Dialog
         as="div"
         className="relative z-10"
-        onClose={() => toggleVisibility(false)}
+        onClose={() =>
+          blocked ? toggleVisibility(true) : toggleVisibility(false)
+        }
       >
         <Transition.Child
           as={Fragment}
