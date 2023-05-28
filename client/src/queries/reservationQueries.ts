@@ -4,21 +4,29 @@ export const reservationQueries = (id?: number) => {
   const query = buildQuery({
     populate: "*",
     filters: {
-      $or: [
-        {
-          ...(id && {
-            requester: {
-              id: {
-                $eq: id,
+      ...(id
+        ? {
+            $or: [
+              {
+                requester: {
+                  id: {
+                    $eq: id,
+                  },
+                },
+                status: "pending",
               },
-            },
+              {
+                status: "approved",
+              },
+            ],
+          }
+        : {
+            $or: [
+              {
+                status: "approved",
+              },
+            ],
           }),
-          status: "pending",
-        },
-        {
-          status: "approved",
-        },
-      ],
     },
     pagination: {
       page: 1,
