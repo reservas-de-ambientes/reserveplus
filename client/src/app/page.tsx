@@ -21,14 +21,14 @@ const Home = () => {
   );
 
   return (
-    <div>
+    <>
       <div className="flex px-2 mx-2 mb-4 sm:flex-nowrap sm:mx-0">
-        <h1 className="font-mono text-3xl font-semibold text-secondary">
+        <h1 className="font-mono text-3xl font-semibold text-primary">
           Olá{!!session ? `, ${session?.user?.name}!` : "!"} Bem-vindo(a) ao
           Sistema de Reservas!
         </h1>
       </div>
-      <h3 className="px-2 mx-2 mb-4 text-lg font-normal text-justify text-secondary sm:mx-0">
+      <h3 className="px-2 mx-2 mb-4 text-lg font-normal text-justify text-primary sm:mx-0">
         Aqui você pode agendar facilmente os ambientes disponíveis para suas
         atividades acadêmicas ou de pesquisa. Nossa plataforma oferece uma
         experiência simplificada para gerenciar suas reservas e garantir que
@@ -63,7 +63,7 @@ const Home = () => {
           )}
         </>
       ) : null}
-    </div>
+    </>
   );
 };
 

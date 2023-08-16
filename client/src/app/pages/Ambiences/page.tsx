@@ -67,7 +67,7 @@ const Ambiences = () => {
   return (
     <PrivateRouteWrapper>
       <div className="flex flex-wrap items-center justify-between px-2 mx-2 mb-4 sm:flex-nowrap sm:mx-0">
-        <h1 className="font-mono text-3xl font-semibold text-secondary">
+        <h1 className="font-mono text-3xl font-semibold text-primary">
           Ambientes
         </h1>
         <div className="inline-flex w-full gap-4 sm:w-auto">
@@ -113,8 +113,8 @@ const Ambiences = () => {
               onClick={() => toggleVisibility(true, "filter")}
               className={`inline-flex items-center w-10 h-10 p-2 space-x-2 rounded-lg cursor-pointer ${
                 hasFilteredAmbiences
-                  ? "bg-blue-400 text-white"
-                  : "bg-secondary text-primary"
+                  ? "bg-secondary text-white"
+                  : "bg-primary text-secondary"
               }  focus:bg-secondary focus:outline-none`}
             />
           </div>

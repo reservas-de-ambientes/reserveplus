@@ -35,7 +35,7 @@ const Table = ({ data, columns, actions, loading = false }: TableProps) => {
     <div className="overflow-x-auto">
       <table
         {...getTableProps()}
-        className={`w-full overflow-hidden border border-collapse ${
+        className={`w-full overflow-hidden border border-collapse shadow-md ${
           memoData.length ? "rounded-lg" : "rounded-t-lg"
         }  table-auto`}
       >
@@ -44,13 +44,13 @@ const Table = ({ data, columns, actions, loading = false }: TableProps) => {
             <tr
               {...headerGroup.getHeaderGroupProps()}
               key={headerGroup.id}
-              className="bg-secondary"
+              className="bg-primary"
             >
               {headerGroup.headers.map((column) => (
                 <th
                   {...column.getHeaderProps()}
                   key={column.id}
-                  className="px-8 py-4 text-center border-b text-primary border-primary"
+                  className="px-8 py-4 text-center border-b text-secondary border-primary"
                 >
                   {column.render("Header")}
                 </th>
@@ -95,7 +95,7 @@ const Table = ({ data, columns, actions, loading = false }: TableProps) => {
         <div className="flex items-center justify-between space-x-4 overflow-hidden border-none ">
           <div className="flex gap-4 ">
             <button
-              className={`px-4 py-2 font-medium text-white bg-primary rounded-md ${
+              className={`px-4 py-2 font-medium text-primary bg-transparent rounded-md ${
                 pagination.page === 1 ? "opacity-50 cursor-not-allowed" : ""
               }`}
               onClick={() =>
@@ -106,7 +106,7 @@ const Table = ({ data, columns, actions, loading = false }: TableProps) => {
               Anterior
             </button>
             <button
-              className={`px-4 py-2 font-medium text-white bg-primary rounded-md ${
+              className={`px-4 py-2 font-medium text-primary bg-transparent rounded-md ${
                 pagination.page === pagination.pageCount
                   ? "opacity-50 cursor-not-allowed"
                   : ""
@@ -119,7 +119,7 @@ const Table = ({ data, columns, actions, loading = false }: TableProps) => {
               Próxima
             </button>
           </div>
-          <span className="font-medium text-secondary">
+          <span className="font-medium text-primary">
             Página{" "}
             <strong>
               {pagination.page} de {pagination.pageCount}

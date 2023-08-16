@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="pt">
       <head />
-      <body className="bg-primary">
+      <body className="bg-slate-300">
         <SessionProvider>
           {pathname !== "/signIn" ? (
             <>

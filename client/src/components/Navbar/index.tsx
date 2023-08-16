@@ -26,7 +26,7 @@ const Navbar = () => {
   }
 
   return (
-    <Disclosure as="nav" className="bg-gray-800 ">
+    <Disclosure as="nav" className="bg-slate-800">
       {({ open }) => (
         <>
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -42,8 +42,8 @@ const Navbar = () => {
                         href={item.route}
                         className={`px-3 py-2 text-sm font-medium rounded-md ${
                           router === item.route
-                            ? "bg-gray-900 text-secondary"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                            ? "bg-slate-800 text-secondary"
+                            : "text-gray-300 hover:bg-primary hover:text-white"
                         }`}
                       >
                         {item.name}

@@ -7,7 +7,6 @@ import React, { useEffect, useState } from "react";
 import { Calendar as ReactBigCalendar, SlotInfo } from "react-big-calendar";
 import { ToastContainer } from "react-toastify";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
-import moment from "moment";
 
 import {
   useCalendarStore,
@@ -97,69 +96,16 @@ const Calendar = () => {
     })();
   }, [fetchData, fetchDataSemester, fetchDataToSelect, query, queryToSelect]);
 
-  const slotDuration = 10; // Defina a duração dos slots em minutos
-  // const slotDuration = 50; // Defina a duração dos slots em minutos
-
-  const hours = [
-    moment().set({ hour: 7, minute: 10, second: 0 }).toDate(),
-    moment().set({ hour: 8, minute: 0, second: 0 }).toDate(),
-    moment().set({ hour: 8, minute: 50, second: 0 }).toDate(),
-    moment().set({ hour: 9, minute: 40, second: 0 }).toDate(),
-    moment().set({ hour: 10, minute: 30, second: 0 }).toDate(),
-    moment().set({ hour: 10, minute: 50, second: 0 }).toDate(),
-    moment().set({ hour: 11, minute: 40, second: 0 }).toDate(),
-    moment().set({ hour: 13, minute: 0, second: 0 }).toDate(),
-    moment().set({ hour: 13, minute: 50, second: 0 }).toDate(),
-    moment().set({ hour: 14, minute: 40, second: 0 }).toDate(),
-    moment().set({ hour: 15, minute: 30, second: 0 }).toDate(),
-    moment().set({ hour: 16, minute: 20, second: 0 }).toDate(),
-    moment().set({ hour: 16, minute: 40, second: 0 }).toDate(),
-    moment().set({ hour: 17, minute: 30, second: 0 }).toDate(),
-    moment().set({ hour: 18, minute: 30, second: 0 }).toDate(),
-    moment().set({ hour: 19, minute: 20, second: 0 }).toDate(),
-    moment().set({ hour: 20, minute: 10, second: 0 }).toDate(),
-    moment().set({ hour: 20, minute: 20, second: 0 }).toDate(),
-    moment().set({ hour: 21, minute: 10, second: 0 }).toDate(),
-  ];
-  const horas = [
-    { hour: 7, minute: 10 },
-    { hour: 8, minute: 0 },
-    { hour: 8, minute: 50 },
-    { hour: 9, minute: 40 },
-    { hour: 10, minute: 30 },
-    { hour: 10, minute: 50 },
-    { hour: 11, minute: 40 },
-    { hour: 13, minute: 0 },
-    { hour: 13, minute: 50 },
-    { hour: 14, minute: 40 },
-    { hour: 15, minute: 30 },
-    { hour: 16, minute: 20 },
-    { hour: 16, minute: 40 },
-    { hour: 17, minute: 30 },
-    { hour: 18, minute: 30 },
-    { hour: 19, minute: 20 },
-    { hour: 20, minute: 10 },
-    { hour: 20, minute: 20 },
-    { hour: 21, minute: 10 },
-  ];
-
-  const minTime = new Date(); // Define a hora mínima (por exemplo, '9:00')
-  const maxTime = new Date(); // Define a hora máxima (por exemplo, '18:00')
-
-  minTime.setHours(7, 10, 0); // Define a hora mínima para '9:00'
-  maxTime.setHours(22, 0, 0); // Define a hora máxima para '18:00'
-
   return (
-    <div className="App">
+    <div className="shadow-md App">
       <DnDCalendar
         views={["month", "week", "day", "agenda"]}
         messages={D.Messages()}
         selectable
-        step={slotDuration}
-        min={minTime}
-        max={maxTime}
+        step={10}
+        min={new Date(new Date().setHours(7, 10, 0))}
+        max={new Date(new Date().setHours(22, 0, 0))}
         timeslots={5}
-        // timeslots={1}
         localizer={D.localizer}
         components={{
           toolbar: Toolbar,
