@@ -10,6 +10,10 @@ const nextConfig = {
       destination: "/pages/Ambiences",
     },
     {
+      source: "/reservar",
+      destination: "/pages/Reserve",
+    },
+    {
       source: "/usuarios",
       destination: "/pages/Users",
     },

@@ -15,3 +15,5 @@ module.exports = {
   },
   plugins: [require("@tailwindcss/forms")],
 };
+// primary: "#8b0000",
+// secondary: "#16a34a",

@@ -5,8 +5,12 @@ export const GetRoutes = () => {
 
   const routes = [
     {
-      name: "Calendário",
+      name: "Home",
       route: "/",
+    },
+    {
+      name: "Reservar",
+      route: "/reservar",
     },
   ];
 

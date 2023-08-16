@@ -1,14 +1,42 @@
 --------------------------------------------------------------------------------
 ----------------------------------DOING-----------------------------------------
+------------------------------------HOME----------------------------------------
+[x] - Criar tela
 -------------------------------CALENDARIO---------------------------------------
-[] - Mudar nome "Calendar" para "Reservar"
-[] - Calendario precisar de um filtro para aparecer as reservas
+[x] - Mudar nome "Calendário" para "Reservar"
+[x] - Deixar o filtro ativo como default no Calendario
+[x] - Bloquear botao filtro para sem filtros
+[x] - Bloquear mexer no campo inicio e fim no modal de cadastro
+[] - Quando tiver mais de 3 reservas no mesmo horario, aparecer um botao q vai para o visualizacao de dia no semana
+[] - Configuracao de horarios no calendario:
+      Configuracao de calendario no backend
+        - Mudar Perfil IFBA
+        - Definir os horarios:
+            Manha
+              7:10
+              8:00
+              8:50
+              9:40
+              10:30
+              10:50
+              11:40
+            Tarde
+              13:00
+              13:50
+              14:40
+              15:30
+              16:20
+              16:40
+              17:30
+            Noite
+              18:30
+              19:20
+              20:10
+              20:20
+              21:10
+
 ---------------------------------AMBIENTES--------------------------------------
 [] - Criar input de pesquisa
---------------------------------PESQUISA----------------------------------------
-[] - Criar pagina Pesquisa
-[] - Inputs - Tipo, ambiente e horario, para quem estiver logado, mostrar os horarios disponiveis para o ambiente
-[] - Inputs - Tipo, ambiente, horario e "solicitante" para quem nao estiver logado, mostrar listagem das reservas
 
 
 --------------------------------------------------------------------------------

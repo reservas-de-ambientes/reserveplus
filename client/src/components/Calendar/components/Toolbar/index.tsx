@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { ToolbarProps } from "react-big-calendar";
 import {
   ChevronLeftIcon,
@@ -20,6 +20,10 @@ const Toolbar = ({ date, view, onView, onNavigate }: ToolbarProps) => {
   const { toggleVisibility } = useModalStore();
 
   const monthYear = formatDateToFullMonthWithYear(date);
+
+  useEffect(() => {
+    toggleVisibility(true, "filter");
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-between p-1 sm:flex-row">

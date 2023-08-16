@@ -31,7 +31,7 @@ export const Data = () => {
         accessor: "status",
         Cell: ({ value }: any) =>
           value === "pending" ? (
-            <div className="flex items-center justify-center w-full">
+            <div className="flex items-center justify-center w-full font-semibold text-orange-400">
               <ClockIcon
                 title="Pendente"
                 className="mr-2 text-orange-400 h-7"
@@ -39,7 +39,7 @@ export const Data = () => {
               Pendente
             </div>
           ) : value === "approved" ? (
-            <div className="flex items-center justify-center w-full">
+            <div className="flex items-center justify-center w-full font-semibold text-green-400">
               <CheckCircleIcon
                 title="Aprovado"
                 className="mr-2 text-green-400 h-7"
@@ -47,7 +47,7 @@ export const Data = () => {
               Aprovado
             </div>
           ) : (
-            <div className="flex items-center justify-center w-full">
+            <div className="flex items-center justify-center w-full font-semibold text-red-400">
               <XCircleIcon
                 title="Reprovado"
                 className="mr-2 text-red-400 h-7 "

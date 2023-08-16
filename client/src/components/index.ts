@@ -1,5 +1,6 @@
 export { default as Button } from "./Button";
 export { default as Calendar } from "./Calendar";
+export { default as Carousel } from "./Carousel";
 export { default as Checkbox } from "./Checkbox";
 export { default as ColorPicker } from "./ColorPicker";
 export { default as Error } from "./Error";
@@ -8,6 +9,7 @@ export { default as Loading } from "./Loading";
 export { default as Navbar } from "./Navbar";
 export { default as PrivateRouteWrapper } from "./PrivateRouteWrapper";
 export { default as Radio } from "./Radio";
+export { default as Section } from "./Section";
 export { default as Select } from "./Select";
 export { default as Table } from "./Table";
 export { default as Textarea } from "./Textarea";
