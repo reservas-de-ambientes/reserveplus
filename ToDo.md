@@ -1,12 +1,49 @@
---------------------------------------------------------------------------------
+
 ----------------------------------DOING-----------------------------------------
-------------------------------------HOME----------------------------------------
+-- GERAL
+[] - Conta Admin no frontend
+-- SEMESTRES
+[] - Criar tela
+--------------------------------------------------------------------------------
+
+------------------------------------DO------------------------------------------
+-- GERAL
+[] - Atualizar o Next
+[] - Atualizar o Strapi
+-- AMBIENTES
+[] - Criar input de pesquisa
+--------------------------------------------------------------------------------
+
+-----------------------------------DONE-----------------------------------------
+-- HOME
 [x] - Criar tela
--------------------------------CALENDARIO---------------------------------------
+[x] - Popular imagens e textos
+-- CALENDARIO
+[x] - Se tiver um filtro no calendar por sala, o modal vim com a sala ja preenchida
+[x] - Esquema de mudar de cor a reserva
+[x] - Adicionou visualizacao de Agenda
+[x] - Quando nao estiver logado trazer so as reservar aprovadas
+[x] - Quando aprovar uma solicitacao mudar o estado para aprovado no calendario
 [x] - Mudar nome "Calendário" para "Reservar"
 [x] - Deixar o filtro ativo como default no Calendario
 [x] - Bloquear botao filtro para sem filtros
-[x] - Bloquear mexer no campo inicio e fim no modal de cadastro
+-- SOLICITACAO
+[x] - Mudar o Status para mais proximo das actions
+[x] - Tooltip para quando uma solicitacao for aprovada e reprovada
+[x] - Na reprovacao, adicionar um campo de input para motivo da reprovacao da solicitacao
+[x] - Icone do Status mais nome
+[x] - Criar campo novo para motivo de reprovacao no banco
+[x] - Filtro ativo do lado de fora, com a opção de tirar o filtro
+-- AMBIENTES
+[x] - Adicionar a opcao de Sala, ficando: Lab, Sala e Outros no frontend e backend
+[x] - Filtro ativo do lado de fora, com a opção de tirar o filtro
+-- LOGIN
+[x] - Mudar nome Salvar para Acessar
+--------------------------------------------------------------------------------
+
+
+---------------------------------STANDBY----------------------------------------
+[] - Bloquear mexer no campo inicio e fim no modal de cadastro
 [] - Quando tiver mais de 3 reservas no mesmo horario, aparecer um botao q vai para o visualizacao de dia no semana
 [] - Configuracao de horarios no calendario:
       Configuracao de calendario no backend
@@ -34,36 +71,4 @@
               20:10
               20:20
               21:10
-
----------------------------------AMBIENTES--------------------------------------
-[] - Criar input de pesquisa
-
-
---------------------------------------------------------------------------------
------------------------------------DONE-----------------------------------------
--------------------------------CALENDARIO---------------------------------------
-[x] - Se tiver um filtro no calendar por sala, o modal vim com a sala ja preenchida
-[x] - Esquema de mudar de cor a reserva
-[x] - Adicionou visualizacao de Agenda
-[x] - Quando nao estiver logado trazer so as reservar aprovadas
-[x] - Quando aprovar uma solicitacao mudar o estado para aprovado no calendario
---------------------------------SOLICITACAO-------------------------------------
-[x] - Mudar o Status para mais proximo das actions
-[x] - Tooltip para quando uma solicitacao for aprovada e reprovada
-[x] - Na reprovacao, adicionar um campo de input para motivo da reprovacao da solicitacao
-[x] - Icone do Status mais nome
-[x] - Criar campo novo para motivo de reprovacao no banco
-[x] - Filtro ativo do lado de fora, com a opção de tirar o filtro
----------------------------------AMBIENTES--------------------------------------
-[x] - Adicionar a opcao de Sala, ficando: Lab, Sala e Outros no frontend e backend
-[x] - Filtro ativo do lado de fora, com a opção de tirar o filtro
----------------------------------LOGIN------------------------------------------
-[x] - Mudar nome Salvar para Acessar
-
-
---------------------------------------------------------------------------------
-------------------------------------DO------------------------------------------
-[] - Conta Admin no frontend
-[] - Atualizar o Next
-[] - Atualizar o Strapi
 --------------------------------------------------------------------------------

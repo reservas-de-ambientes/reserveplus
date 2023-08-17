@@ -145,7 +145,7 @@ const ReservationForm = ({ editedData }: ReservationFormProps) => {
                   value={formData.title}
                 />
                 <Select
-                  label="Salas"
+                  label="Ambiente"
                   name="room"
                   options={reservationAmbienceOptions}
                   onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {

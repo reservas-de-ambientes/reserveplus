@@ -34,10 +34,10 @@ const Carousel = ({ data, className = "" }: CarouselProps) => {
       {data.map((item, index) => (
         <div key={index}>
           <Image
-            className="rounded-lg"
-            width={1000}
-            height={1000}
-            quality={100}
+            className="object-cover w-full h-auto rounded-lg"
+            width="0"
+            height="0"
+            sizes="100vw"
             src={item.image}
             alt={`Image ${index + 1}`}
           />
