@@ -27,6 +27,20 @@ export const formatReservationData = (
       name: reservation.attributes.requester?.data.attributes.username!,
       type: reservation.attributes.requester?.data.attributes.type!,
     },
+    ...(reservation.attributes.isSemester && {
+      semester: {
+        id: reservation.attributes.semester?.data.id!,
+        currentSemester:
+          reservation.attributes.semester?.data.attributes.currentSemester!,
+        initialDayOfSemester: new Date(
+          reservation.attributes.semester?.data.attributes.initialDayOfSemester!
+        ),
+        lastDayOfSemester: new Date(
+          reservation.attributes.semester?.data.attributes.lastDayOfSemester!
+        ),
+        semester: reservation.attributes.semester?.data.attributes.semester!,
+      },
+    }),
   };
 };
 

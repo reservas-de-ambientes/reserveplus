@@ -50,8 +50,7 @@ export const getEventStyle = (event: any) => {
 };
 
 export const getReservationWithSemester = (
-  reservations: reservationModel[],
-  semesters?: semesterModel[]
+  reservations: reservationModel[]
 ) => {
   return reservations.flatMap((reservation) => {
     if (reservation.isSemester) {
@@ -60,14 +59,12 @@ export const getReservationWithSemester = (
       const formattedEndHour = moment(reservation.end).format("HH:mm");
       const dayOfWeek = moment(reservation.start).day();
 
-      const currentSemester = semesters?.find((s) => s.currentSemester);
-
       const weeklyDates = getWeeklyDates(
         dayOfWeek,
         formattedStartHour,
         formattedEndHour,
-        currentSemester?.initialDayOfSemester!,
-        currentSemester?.lastDayOfSemester!
+        reservation?.semester?.initialDayOfSemester!,
+        reservation?.semester?.lastDayOfSemester!
       );
 
       // Verifica se já existe reserva para o mesmo dia
@@ -91,6 +88,7 @@ export const getReservationWithSemester = (
                 title: reservation.title,
                 color: reservation.color,
                 ambience: reservation.ambience,
+                semester: reservation.semester,
                 start,
                 end,
               },

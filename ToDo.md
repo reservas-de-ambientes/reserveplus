@@ -27,6 +27,7 @@
 [x] - Mudar nome "Calendário" para "Reservar"
 [x] - Deixar o filtro ativo como default no Calendario
 [x] - Bloquear botao filtro para sem filtros
+[x] - Bug em reservas semestrais quando muda de semestre
 -- SOLICITACAO
 [x] - Mudar o Status para mais proximo das actions
 [x] - Tooltip para quando uma solicitacao for aprovada e reprovada

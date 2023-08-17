@@ -11,6 +11,7 @@ import {
   useCalendarStore,
   useAmbiencesStore,
   useColorStore,
+  useSemesterStore,
 } from "@/store";
 import { useAuth } from "@/hooks";
 import { reservationModel } from "@/models";
@@ -43,6 +44,7 @@ const ReservationForm = ({ editedData }: ReservationFormProps) => {
     selectedFilter,
   } = useReservationStore();
   const { calendarData } = useCalendarStore();
+  const { semesters } = useSemesterStore();
   const { setColor } = useColorStore();
   const { ambiences } = useAmbiencesStore();
   const [formData, setFormData] = useState(
@@ -124,6 +126,9 @@ const ReservationForm = ({ editedData }: ReservationFormProps) => {
                       setFormData((prev) => ({
                         ...prev,
                         isSemester: e,
+                        semester: e
+                          ? semesters.find((item) => item.currentSemester)
+                          : undefined,
                         color: e ? "#e67c73" : "#039be5",
                       }));
                     }}

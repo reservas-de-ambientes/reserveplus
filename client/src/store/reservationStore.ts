@@ -53,6 +53,9 @@ export const useReservationStore = create<IReservation>((set, get) => ({
       data: {
         ...newReservation,
         requester: { id: newReservation.requester.id },
+        ...(newReservation.isSemester && {
+          semester: { id: newReservation.semester?.id },
+        }),
         ambience: { id: newReservation.ambience.id },
       },
     };
@@ -72,6 +75,9 @@ export const useReservationStore = create<IReservation>((set, get) => ({
         status: "pending",
         requester: { id: value.requester.id },
         ambience: { id: value.ambience.id },
+        ...(value.isSemester && {
+          semester: { id: value.semester?.id },
+        }),
       },
     };
 
@@ -104,8 +110,7 @@ export const useReservationStore = create<IReservation>((set, get) => ({
     } else {
       set((state) => {
         let filteredReservations = getReservationWithSemester(
-          state.reservations,
-          semesters
+          state.reservations
         );
 
         if (type.trim() !== "") {

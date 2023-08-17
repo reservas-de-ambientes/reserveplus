@@ -84,15 +84,7 @@ const Navbar = () => {
                       leaveTo="transform opacity-0 scale-95"
                     >
                       {isAuthenticated ? (
-                        <Menu.Items className="absolute right-0 z-50 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                          <Menu.Item>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-secondary hover:text-white"
-                            >
-                              Seu Perfil
-                            </a>
-                          </Menu.Item>
+                        <Menu.Items className="absolute right-0 z-50 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-black ring-opacity-5 focus:outline-none">
                           <Menu.Item>
                             <a
                               className="block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-secondary hover:text-white"
@@ -109,7 +101,7 @@ const Navbar = () => {
                           </Menu.Item>
                         </Menu.Items>
                       ) : (
-                        <Menu.Items className="absolute right-0 z-50 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Items className="absolute right-0 z-50 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-black ring-opacity-5 focus:outline-none">
                           <Menu.Item>
                             <Link
                               href="/signIn"
@@ -181,13 +173,6 @@ const Navbar = () => {
                   </div>
                 </div>
                 <div className="px-2 mt-3 space-y-1">
-                  <Disclosure.Button
-                    as="a"
-                    href="#"
-                    className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md cursor-pointer hover:text-white hover:bg-gray-700"
-                  >
-                    Seu Perfil
-                  </Disclosure.Button>
                   <Disclosure.Button
                     as="a"
                     className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md cursor-pointer hover:text-white hover:bg-gray-700"

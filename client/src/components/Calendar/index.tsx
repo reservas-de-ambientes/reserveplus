@@ -71,6 +71,7 @@ const Calendar = () => {
       id: event.event.id,
       requester: event.event.requester,
       ambience: event.event.ambience,
+      semester: event.event.semester,
       start: event.start,
       end: event.end,
       title: event.event.title,
@@ -97,7 +98,7 @@ const Calendar = () => {
   }, [fetchData, fetchDataSemester, fetchDataToSelect, query, queryToSelect]);
 
   return (
-    <div className="shadow-md App">
+    <div className="mx-2 shadow-md App">
       <DnDCalendar
         views={["month", "week", "day", "agenda"]}
         messages={D.Messages()}
@@ -117,7 +118,7 @@ const Calendar = () => {
         events={
           hasFilteredReservations
             ? filteredReservations
-            : D.getReservationWithSemester(reservations, semesters)
+            : D.getReservationWithSemester(reservations)
         }
         className="bg-slate-50"
         onSelectEvent={(reservation: any) => {

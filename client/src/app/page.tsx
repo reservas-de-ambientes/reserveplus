@@ -16,7 +16,7 @@ const Home = () => {
     images: { image: string }[]
   ) => (
     <Section title={title} description={description}>
-      <Carousel className="w-full mb-4 md:w-3/4" data={images} />
+      <Carousel className="w-full px-4 mb-4 md:w-3/4" data={images} />
     </Section>
   );
 
