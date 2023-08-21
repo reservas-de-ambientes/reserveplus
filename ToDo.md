@@ -1,23 +1,34 @@
 
 ----------------------------------DOING-----------------------------------------
 -- GERAL
-[] - Conta Admin no frontend
+[x] - Criar isAdmin no user no Strapi como boolean
+[x] - Pagina semestre vai ser apenas para usuario admin
+-- AMBIENTES
+[] - Criar CRUD em ambientes para o usuario admin
+-- HOME
+[x] - Criar tela
+[x] - Popular imagens e escrever textos
+-- CALENDARIO
+[x] - Bug em reservas semestrais quando muda de semestre
 -- SEMESTRES
+[x] - Criar tela
+[x] - Criar CRUD de semestres
+[x] - Regra data final sempre tem que ser maior que a data inicial
+[x] - Ao colocar um semestre como atual, todos os outros tem que atualizar para false
+-- USUARIOS
 [] - Criar tela
+[] - Criar CRUD de usuarios
 --------------------------------------------------------------------------------
 
 ------------------------------------DO------------------------------------------
 -- GERAL
 [] - Atualizar o Next
-[] - Atualizar o Strapi
+[] - Comecar a utilizar o react-query para fetch de dados e fazer menos reqs e deixar coisas em cache
 -- AMBIENTES
 [] - Criar input de pesquisa
 --------------------------------------------------------------------------------
 
 -----------------------------------DONE-----------------------------------------
--- HOME
-[x] - Criar tela
-[x] - Popular imagens e textos
 -- CALENDARIO
 [x] - Se tiver um filtro no calendar por sala, o modal vim com a sala ja preenchida
 [x] - Esquema de mudar de cor a reserva
@@ -41,7 +52,6 @@
 -- LOGIN
 [x] - Mudar nome Salvar para Acessar
 --------------------------------------------------------------------------------
-
 
 ---------------------------------STANDBY----------------------------------------
 [] - Bloquear mexer no campo inicio e fim no modal de cadastro

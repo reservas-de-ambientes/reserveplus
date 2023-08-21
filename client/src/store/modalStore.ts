@@ -1,10 +1,26 @@
 import { create } from "zustand";
 
-type ModalType = "filter" | "form" | "delete" | "view" | "approved" | null;
+type ModalType =
+  | "filter"
+  | "form"
+  | "delete"
+  | "view"
+  | "approved"
+  | "edit"
+  | "add"
+  | null;
 
 interface IModal {
   open: boolean;
-  modalType: "filter" | "form" | "delete" | "view" | "approved" | null;
+  modalType:
+    | "filter"
+    | "form"
+    | "delete"
+    | "view"
+    | "approved"
+    | "edit"
+    | "add"
+    | null;
   toggleVisibility: (isOpen: boolean, modalType?: ModalType) => void;
 }
 

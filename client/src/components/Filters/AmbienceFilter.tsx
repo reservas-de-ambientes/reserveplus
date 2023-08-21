@@ -99,6 +99,7 @@ const AmbienceFilter = () => {
           <Button
             type="submit"
             className="inline-flex justify-center w-full px-4 py-2 mt-3 mb-3 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm sm:mb-0 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-green-700 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+            disabled={!filterData.availability && !filterData.type}
           >
             Filtrar
           </Button>

@@ -2,8 +2,8 @@ import { create } from "zustand";
 
 import { reservationModel } from "@/models";
 import { getReservations, updateReservation } from "@/services";
-import { PaginationProps } from "./paginationStore";
 import { formatReservationData } from "@/utils";
+import { PaginationProps } from "./paginationStore";
 
 interface ISolicitation {
   solicitations: reservationModel[];

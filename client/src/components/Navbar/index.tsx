@@ -96,7 +96,7 @@ const Navbar = () => {
                                 });
                               }}
                             >
-                              Logout
+                              Sair
                             </a>
                           </Menu.Item>
                         </Menu.Items>
@@ -184,7 +184,7 @@ const Navbar = () => {
                       });
                     }}
                   >
-                    Logout
+                    Sair
                   </Disclosure.Button>
                 </div>
               </div>

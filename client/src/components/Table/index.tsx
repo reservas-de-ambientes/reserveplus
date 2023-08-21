@@ -99,7 +99,7 @@ const Table = ({ data, columns, actions, loading = false }: TableProps) => {
                 pagination.page === 1 ? "opacity-50 cursor-not-allowed" : ""
               }`}
               onClick={() =>
-                setPagination((prev) => ({ ...prev, page: prev.page - 1 }))
+                setPagination({ ...pagination, page: pagination.page - 1 })
               }
               disabled={pagination.page === 1}
             >
@@ -112,7 +112,7 @@ const Table = ({ data, columns, actions, loading = false }: TableProps) => {
                   : ""
               }`}
               onClick={() =>
-                setPagination((prev) => ({ ...prev, page: prev.page + 1 }))
+                setPagination({ ...pagination, page: pagination.page + 1 })
               }
               disabled={pagination.page === pagination.pageCount}
             >

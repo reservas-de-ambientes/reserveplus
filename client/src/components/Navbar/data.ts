@@ -30,6 +30,12 @@ export const GetRoutes = () => {
         route: "/ambientes",
       });
     }
+    if (session?.user?.isAdmin) {
+      routes.push({
+        name: "Semestres",
+        route: "/semestres",
+      });
+    }
   }
 
   return routes;

@@ -53,6 +53,7 @@ export default NextAuth({
           id: user.id,
           name: user.username,
           type: user.type,
+          isAdmin: user.isAdmin,
           electronicIdentification: user.electronicIdentification,
         }),
         (token.id = user.id),

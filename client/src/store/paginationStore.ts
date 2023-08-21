@@ -9,7 +9,7 @@ export type PaginationProps = {
 
 type PaginationStore = {
   pagination: PaginationProps;
-  setPagination: (updater: (prev: PaginationProps) => PaginationProps) => void;
+  setPagination: (pagination: PaginationProps) => void;
   resetPagination: () => void;
 };
 
@@ -20,10 +20,7 @@ export const usePaginationStore = create<PaginationStore>((set) => ({
     pageSize: 8,
     total: 0,
   },
-  setPagination: (updater) =>
-    set((state) => ({
-      pagination: updater(state.pagination),
-    })),
+  setPagination: (newPage) => set({ pagination: newPage }),
   resetPagination: () =>
     set({ pagination: { page: 1, pageCount: 1, pageSize: 8, total: 0 } }),
 }));

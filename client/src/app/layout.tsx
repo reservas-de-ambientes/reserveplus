@@ -1,12 +1,12 @@
 "use client";
 
-import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { ToastContainer } from "react-toastify";
 
 import { useToastNotificationStore } from "@/store";
 import { Navbar } from "@/components";
 
+import Providers from "./provider";
 import "./globals.css";
 
 export default function RootLayout({
@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="pt">
       <head />
       <body className="bg-slate-300">
-        <SessionProvider>
+        <Providers>
           {pathname !== "/signIn" ? (
             <>
               <Navbar />
@@ -35,7 +35,7 @@ export default function RootLayout({
               {isVisible && <ToastContainer />}
             </main>
           )}
-        </SessionProvider>
+        </Providers>
       </body>
     </html>
   );

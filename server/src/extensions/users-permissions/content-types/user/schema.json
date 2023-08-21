@@ -87,6 +87,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "isAdmin": {
+      "type": "boolean",
+      "default": false,
+      "required": false
     }
   }
 }

@@ -5,6 +5,7 @@ export type userModel = {
   email: string;
   type: string;
   responsible?: string;
+  isAdmin?: boolean;
   electronicIdentification?: string;
 };
 
@@ -16,6 +17,7 @@ export type userApiModel = {
     confirmed: boolean;
     createdAt: string;
     electronicIdentification?: string;
+    isAdmin?: boolean;
     email: string;
     provider: string;
     type: string;

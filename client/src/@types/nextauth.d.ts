@@ -6,6 +6,7 @@ interface IUser extends DefaultUser {
    */
   code: string;
   electronicIdentification?: string;
+  isAdmin?: boolean;
   type: string;
   /**
    * Field to check whether a user has a subscription

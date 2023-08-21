@@ -22,6 +22,10 @@ const nextConfig = {
       destination: "/pages/Solicitations",
     },
     {
+      source: "/semestres",
+      destination: "/pages/Semesters",
+    },
+    {
       source: "/signIn",
       destination: "/pages/SignIn",
     },
