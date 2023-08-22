@@ -1,7 +1,7 @@
 import { stringOrDate } from "react-big-calendar";
 
 import { ambienceApiModel, ambienceModel } from "./ambience.model";
-import { userApiModel, userModel } from "./user.model";
+import { responsibleAndRequesterModel, userModel } from "./user.model";
 import { semesterApiModel, semesterModel } from "./semester.model";
 
 export type reservationModel = {
@@ -41,7 +41,7 @@ export type reservationApiModel = {
       data: ambienceApiModel;
     };
     requester?: {
-      data: userApiModel;
+      data: responsibleAndRequesterModel;
     };
   };
 };

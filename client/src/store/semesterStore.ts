@@ -7,7 +7,7 @@ import {
   editSemester,
   getSemesters,
 } from "@/services";
-import { PaginationProps, usePaginationStore } from "./paginationStore";
+import { PaginationProps } from "./paginationStore";
 
 interface ISemester {
   semesters: semesterModel[];

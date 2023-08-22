@@ -35,6 +35,10 @@ export const GetRoutes = () => {
         name: "Semestres",
         route: "/semestres",
       });
+      routes.push({
+        name: "Usuários",
+        route: "/usuarios",
+      });
     }
   }
 

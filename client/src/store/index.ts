@@ -7,3 +7,4 @@ export * from "./reservationStore";
 export * from "./semesterStore";
 export * from "./solicitationStore";
 export * from "./toastNotificationStore";
+export * from "./userStore";

@@ -26,6 +26,10 @@ const nextConfig = {
       destination: "/pages/Semesters",
     },
     {
+      source: "/usuarios",
+      destination: "/pages/Users",
+    },
+    {
       source: "/signIn",
       destination: "/pages/SignIn",
     },

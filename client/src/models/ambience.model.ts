@@ -1,4 +1,4 @@
-import { userApiModel } from "./user.model";
+import { responsibleAndRequesterModel } from "./user.model";
 
 export type responsibleModel = {
   id: number;
@@ -34,7 +34,7 @@ export type ambienceApiModel = {
     updatedAt: string;
     value: string;
     responsibles?: {
-      data: userApiModel[];
+      data: responsibleAndRequesterModel[];
     };
   };
 };

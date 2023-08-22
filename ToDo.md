@@ -16,14 +16,14 @@
 [x] - Regra data final sempre tem que ser maior que a data inicial
 [x] - Ao colocar um semestre como atual, todos os outros tem que atualizar para false
 -- USUARIOS
-[] - Criar tela
-[] - Criar CRUD de usuarios
+[x] - Criar tela
+[x] - Criar CRUD de usuarios
 --------------------------------------------------------------------------------
 
 ------------------------------------DO------------------------------------------
 -- GERAL
 [] - Atualizar o Next
-[] - Comecar a utilizar o react-query para fetch de dados e fazer menos reqs e deixar coisas em cache
+[] - Comecar a utilizar o react-query para fetch de dados e fazer menos reqs e deixar dados em cache
 -- AMBIENTES
 [] - Criar input de pesquisa
 --------------------------------------------------------------------------------
