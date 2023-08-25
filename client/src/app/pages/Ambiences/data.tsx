@@ -3,10 +3,13 @@
 import {
   CheckCircleIcon,
   EyeIcon,
+  PencilSquareIcon,
+  TrashIcon,
   XCircleIcon,
 } from "@heroicons/react/24/outline";
 
 import { useAmbiencesStore, useModalStore } from "@/store";
+import { useAuth } from "@/hooks";
 
 export const Data = () => {
   const { ambiences } = useAmbiencesStore();
@@ -17,7 +20,16 @@ export const Data = () => {
     })),
     columns: [
       { Header: "Ambiente", accessor: "value" },
-      { Header: "Tipo", accessor: "type" },
+      {
+        Header: "Tipo",
+        accessor: "type",
+        Cell: ({ value }: any) =>
+          value === "laboratory"
+            ? "Laboratório"
+            : value === "class"
+            ? "Sala"
+            : "Outros",
+      },
       {
         Header: "Disponibilidade",
         accessor: "availability",
@@ -39,8 +51,8 @@ export const Data = () => {
             {value?.length === 1
               ? value[0]?.username
               : value?.length === 2
-              ? value[0].username + ", " + value[1].username
-              : value[0].username + ", " + value[1].username + "..."}
+              ? value[0].username + ", " + value[1]?.username
+              : value[0].username + ", " + value[1]?.username + "..."}
           </div>
         ),
       },
@@ -51,6 +63,7 @@ export const Data = () => {
 export const Actions = () => {
   const { selectAmbience } = useAmbiencesStore();
   const { toggleVisibility } = useModalStore();
+  const { session } = useAuth();
 
   const seeAction = (row: any) => (
     <EyeIcon
@@ -62,6 +75,32 @@ export const Actions = () => {
       }}
     />
   );
+
+  const editAction = (row: any) => (
+    <PencilSquareIcon
+      className="p-2 text-green-500 bg-green-200 rounded-lg cursor-pointer w-9 h-9"
+      title="Editar"
+      onClick={() => {
+        toggleVisibility(true, "edit");
+        selectAmbience(row.original.id);
+      }}
+    />
+  );
+
+  const deleteAction = (row: any) => (
+    <TrashIcon
+      className="p-2 text-red-500 bg-red-200 rounded-lg cursor-pointer w-9 h-9"
+      title="Deletar"
+      onClick={() => {
+        toggleVisibility(true, "delete");
+        selectAmbience(row.original.id);
+      }}
+    />
+  );
+
+  if (session?.user?.isAdmin) {
+    return [seeAction, editAction, deleteAction];
+  }
 
   return [seeAction];
 };

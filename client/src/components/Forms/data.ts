@@ -1,7 +1,7 @@
 import { useAmbiencesStore, useUserStore } from "@/store";
 
 export const FormsOptions = () => {
-  const { ambiences } = useAmbiencesStore();
+  const { ambiences, selectedAmbience } = useAmbiencesStore();
   const { users } = useUserStore();
 
   const reservationAmbienceOptions = ambiences
@@ -10,6 +10,14 @@ export const FormsOptions = () => {
       id: ambience.id,
       value: ambience.id.toString(),
       title: ambience.value,
+    }));
+
+  const ambienceResponsiblesOptions = users
+    .filter((user) => user.type === "Docente ou TAE")
+    .map((user) => ({
+      key: user.id.toString(),
+      value: user.id.toString(),
+      label: user.username,
     }));
 
   const userResponsiblesOptions = users
@@ -22,6 +30,7 @@ export const FormsOptions = () => {
 
   return {
     reservationAmbienceOptions,
+    ambienceResponsiblesOptions,
     userResponsiblesOptions,
   };
 };

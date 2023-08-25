@@ -1,24 +1,85 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 import { useModalStore, useAmbiencesStore } from "@/store";
-import { Button, Input, Radio, Textarea } from "@/components";
+import { ambienceModel } from "@/models";
+import { Button, Input, MultiSelect, Radio, Textarea } from "@/components";
+import * as D from "./data";
 
 const AmbienceForm = () => {
   const { toggleVisibility, modalType } = useModalStore();
-  const { selectedAmbience } = useAmbiencesStore();
+  const {
+    ambiences,
+    selectedAmbience,
+    clearErrorMessage,
+    addAmbience,
+    editAmbience,
+  } = useAmbiencesStore();
+  const [formData, setFormData] = useState(
+    selectedAmbience ? selectedAmbience : ({} as ambienceModel)
+  );
+  const [responsiblesSelected, setResponsiblesSelected] = useState<any>([]);
 
-  const allResponsiblesUsernames = selectedAmbience?.responsibles
-    ?.map((responsible) => responsible.username)
-    .join(", ");
+  const { ambienceResponsiblesOptions } = D.FormsOptions();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const payload = {
+      ...formData,
+      dependsOnReservation:
+        formData.dependsOnReservation === "Sim" ? true : false,
+      responsibles: responsiblesSelected.map((responsible: any) => ({
+        id: Number(responsible.value),
+      })),
+    };
+
+    if (modalType === "edit") {
+      const response: any = await editAmbience(formData.id, payload);
+      if (!response.data && !!response.error) {
+        toggleVisibility(true);
+      } else {
+        toggleVisibility(false);
+        clearErrorMessage();
+      }
+    } else {
+      const response: any = await addAmbience(payload);
+
+      if (!response.data && !!response.error) {
+        toggleVisibility(true);
+      } else {
+        toggleVisibility(false);
+        clearErrorMessage();
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (modalType === "edit" || modalType === "view") {
+      const responsables = selectedAmbience?.responsibles?.map(
+        (responsible) => ({
+          key: responsible.id.toString(),
+          value: responsible.id.toString(),
+          label: responsible.username,
+        })
+      );
+
+      setResponsiblesSelected(responsables);
+    }
+  }, [modalType]);
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="bg-white ">
         <Dialog.Title className="relative p-4 text-lg font-medium leading-6 text-center text-gray-900 border-b border-solid sm:p-4 border-slate-200">
-          Visualizar Ambiente
+          {!!selectedAmbience && modalType !== "view"
+            ? "Editar Ambiente"
+            : modalType === "view"
+            ? "Visualizar Ambiente"
+            : "Adicionar Ambiente"}
         </Dialog.Title>
         <XMarkIcon
           className="absolute w-6 h-6 text-gray-400 cursor-pointer right-3 top-2"
@@ -34,7 +95,15 @@ const AmbienceForm = () => {
                   label="Código"
                   name="value"
                   type="text"
-                  value={selectedAmbience?.value}
+                  required
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setFormData((prev) => ({
+                      ...prev,
+                      value: e.target.value,
+                    }));
+                    clearErrorMessage();
+                  }}
+                  value={formData?.value}
                   disabled={modalType === "view"}
                 />
                 <Radio
@@ -43,11 +112,18 @@ const AmbienceForm = () => {
                   required
                   legend="Selecione o tipo de ambiente"
                   options={[
-                    { title: "Laboratório", value: "Laboratório" },
-                    { title: "Sala", value: "Sala" },
-                    { title: "Outros", value: "Outros" },
+                    { title: "Laboratório", value: "laboratory" },
+                    { title: "Sala", value: "class" },
+                    { title: "Outros", value: "others" },
                   ]}
-                  value={selectedAmbience?.type}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setFormData((prev) => ({
+                      ...prev,
+                      type: e.target.id,
+                    }));
+                    clearErrorMessage();
+                  }}
+                  value={formData?.type}
                   disabled={modalType === "view"}
                 />
                 <Radio
@@ -59,7 +135,14 @@ const AmbienceForm = () => {
                     { title: "Disponível", value: "available" },
                     { title: "Indisponível", value: "unavailable" },
                   ]}
-                  value={selectedAmbience?.availability}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setFormData((prev) => ({
+                      ...prev,
+                      availability: e.target.id,
+                    }));
+                    clearErrorMessage();
+                  }}
+                  value={formData?.availability}
                   disabled={modalType === "view"}
                 />
                 <Radio
@@ -71,46 +154,83 @@ const AmbienceForm = () => {
                     { title: "Sim", value: "Sim" },
                     { title: "Não", value: "Não" },
                   ]}
-                  value={selectedAmbience?.dependsOnReservation}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setFormData((prev) => ({
+                      ...prev,
+                      dependsOnReservation: e.target.id,
+                    }));
+                    clearErrorMessage();
+                  }}
+                  value={formData?.dependsOnReservation as any}
                   disabled={modalType === "view"}
                 />
-                <Input
-                  label="Responsáveis"
+                <MultiSelect
+                  options={ambienceResponsiblesOptions}
                   name="responsibles"
-                  type="text"
-                  required
-                  value={allResponsiblesUsernames}
+                  label="Responsáveis"
+                  labelledBy="selecione os responsáveis"
+                  value={responsiblesSelected}
                   disabled={modalType === "view"}
+                  onChange={setResponsiblesSelected}
                 />
-                {selectedAmbience?.numberOfMachines && (
+                {(selectedAmbience?.numberOfMachines ||
+                  modalType === "add") && (
                   <Input
                     label="Número de máquinas"
                     name="value"
-                    type="text"
-                    value={selectedAmbience?.numberOfMachines}
+                    type="number"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      setFormData((prev) => ({
+                        ...prev,
+                        numberOfMachines: Number(e.target.value),
+                      }));
+                      clearErrorMessage();
+                    }}
+                    value={formData?.numberOfMachines}
                     disabled={modalType === "view"}
                   />
                 )}
-                {selectedAmbience?.peopleCapacity && (
+                {(selectedAmbience?.peopleCapacity || modalType === "add") && (
                   <Input
                     label="Capacidade de pessoas"
                     name="value"
-                    type="text"
-                    value={selectedAmbience?.peopleCapacity}
+                    type="number"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      setFormData((prev) => ({
+                        ...prev,
+                        peopleCapacity: Number(e.target.value),
+                      }));
+                      clearErrorMessage();
+                    }}
+                    value={formData?.peopleCapacity}
                     disabled={modalType === "view"}
                   />
                 )}
                 <Textarea
                   label="Descrição"
                   name="description"
-                  value={selectedAmbience?.description}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                    setFormData((prev) => ({
+                      ...prev,
+                      description: e.target.value,
+                    }));
+                    clearErrorMessage();
+                  }}
+                  value={formData?.description}
                   disabled={modalType === "view"}
                 />
                 <Input
                   label="Tranca"
                   name="lock"
                   type="text"
-                  value={selectedAmbience?.lock}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setFormData((prev) => ({
+                      ...prev,
+                      lock: e.target.value,
+                    }));
+                    clearErrorMessage();
+                  }}
+                  value={formData?.lock}
                   disabled={modalType === "view"}
                 />
               </div>
@@ -119,12 +239,23 @@ const AmbienceForm = () => {
         </div>
       </div>
       <div className="gap-4 px-4 py-3 bg-gray-50 sm:flex sm:flex-row-reverse sm:px-6">
+        {modalType !== "view" && (
+          <Button
+            type="submit"
+            className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm disabled:cursor-not-allowed disabled:bg-gray-500 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:w-auto sm:text-sm hover:bg-green-700 focus:ring-green-500"
+          >
+            Salvar
+          </Button>
+        )}
         <Button
           type="button"
           className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:opacity-50 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-          onClick={() => toggleVisibility(false)}
+          onClick={() => {
+            toggleVisibility(false);
+            clearErrorMessage();
+          }}
         >
-          Fechar
+          {modalType === "view" ? "Fechar" : "Cancelar"}
         </Button>
       </div>
     </form>

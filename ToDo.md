@@ -4,7 +4,7 @@
 [x] - Criar isAdmin no user no Strapi como boolean
 [x] - Pagina semestre vai ser apenas para usuario admin
 -- AMBIENTES
-[] - Criar CRUD em ambientes para o usuario admin
+[x] - Criar CRUD em ambientes para o usuario admin
 -- HOME
 [x] - Criar tela
 [x] - Popular imagens e escrever textos
@@ -18,6 +18,7 @@
 -- USUARIOS
 [x] - Criar tela
 [x] - Criar CRUD de usuarios
+[] - Criar Filtros
 --------------------------------------------------------------------------------
 
 ------------------------------------DO------------------------------------------

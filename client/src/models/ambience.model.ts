@@ -12,7 +12,7 @@ export type ambienceModel = {
   value: string;
   type: string;
   availability: string;
-  dependsOnReservation: string;
+  dependsOnReservation: string | boolean;
   description?: string;
   numberOfMachines?: number;
   peopleCapacity?: number;

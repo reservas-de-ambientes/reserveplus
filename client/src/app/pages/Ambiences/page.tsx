@@ -1,19 +1,29 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { FunnelIcon } from "@heroicons/react/24/outline";
+import { FunnelIcon, PlusIcon } from "@heroicons/react/24/outline";
 
-import { useAmbiencesStore, useModalStore, usePaginationStore } from "@/store";
+import {
+  useAmbiencesStore,
+  useModalStore,
+  usePaginationStore,
+  useToastNotificationStore,
+  useUserStore,
+} from "@/store";
 import { ambienceQueries } from "@/queries";
 import {
   AmbienceFilter,
   AmbienceForm,
+  Button,
+  ConfirmationModal,
   Modal,
   PrivateRouteWrapper,
   Table,
 } from "@/components";
 
 import * as D from "./data";
+import { useAuth } from "@/hooks";
+import { ToastContainer } from "react-toastify";
 
 const Ambiences = () => {
   const {
@@ -22,9 +32,15 @@ const Ambiences = () => {
     fetchData,
     paginationData,
     selectedFilter,
+    selectAmbience,
+    removeAmbience,
+    selectedAmbience,
   } = useAmbiencesStore();
+  const { fetchData: userFetchData } = useUserStore();
   const { toggleVisibility, modalType } = useModalStore();
   const { pagination, setPagination } = usePaginationStore();
+  const { isVisible, show } = useToastNotificationStore();
+  const { session } = useAuth();
 
   const { query, queryWithFilters } = ambienceQueries(
     pagination,
@@ -43,6 +59,7 @@ const Ambiences = () => {
         fetchData(queryWithFilters, selectedFilter);
       } else {
         fetchData(query);
+        userFetchData();
       }
     })();
   }, [
@@ -111,6 +128,21 @@ const Ambiences = () => {
               }  focus:bg-secondary focus:outline-none`}
             />
           </div>
+          {session?.user?.isAdmin && (
+            <Button
+              type="button"
+              className="inline-flex justify-center w-full px-3 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-primary disabled:cursor-not-allowed disabled:bg-gray-500 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:w-auto sm:text-sm "
+              onClick={() => {
+                selectAmbience();
+                toggleVisibility(true, "add");
+              }}
+            >
+              <div className="flex items-center gap-2">
+                <h4>Adicionar ambiente</h4>
+                <PlusIcon className="w-5 h-5 text-white" />
+              </div>
+            </Button>
+          )}
         </div>
       </div>
 
@@ -121,13 +153,22 @@ const Ambiences = () => {
         loading={isLoading}
       />
 
-      {modalType === "filter" && (
+      {isVisible && <ToastContainer />}
+
+      {modalType === "delete" ? (
+        <ConfirmationModal
+          title="Confirmação de exclusão"
+          description="Ao fazer isso o ambiente será deletado. Tem certeza que deseja deleta-lo?"
+          action={() => {
+            removeAmbience(selectedAmbience?.id!);
+            show("Ambiente deletado com sucesso.", "success");
+          }}
+        />
+      ) : modalType === "filter" ? (
         <Modal>
           <AmbienceFilter />
         </Modal>
-      )}
-
-      {modalType === "view" && (
+      ) : (
         <Modal>
           <AmbienceForm />
         </Modal>
