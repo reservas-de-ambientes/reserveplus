@@ -9,9 +9,11 @@ interface IUser {
   selectedUser: userApiModel | null;
   paginationData: PaginationProps | null;
   isLoading: boolean;
+  hasFilteredUsers: boolean;
   errorMessage: string;
+  selectedFilter: Pick<userApiModel, "type"> | null;
   clearErrorMessage: () => void;
-  fetchData: (params?: any) => void;
+  fetchData: (params?: any, filters?: any) => void;
   selectUser: (id?: number) => void;
   addUser: (newUser: userApiModel) => void;
   editUser: (id: number, newUser: userApiModel) => void;
@@ -24,12 +26,16 @@ export const useUserStore = create<IUser>((set, get) => ({
   isLoading: true,
   errorMessage: "",
   paginationData: null,
-  fetchData: async (params) => {
+  selectedFilter: null,
+  hasFilteredUsers: false,
+  fetchData: async (params, filters = null) => {
     const { data, meta } = await getUsers(params);
 
     set({
       users: data,
       paginationData: meta.pagination,
+      hasFilteredUsers: !!(filters && filters.type !== "") ? true : false,
+      selectedFilter: filters,
       isLoading: false,
     });
   },

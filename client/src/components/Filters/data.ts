@@ -68,11 +68,23 @@ export const filtersOptions = () => {
       title: ambience.value,
     }));
 
+  const userFilterTypeOptions = [
+    { id: 1, title: "Docente ou TAE", value: "Docente ou TAE" },
+    { id: 2, title: "Terceirizado", value: "Terceirizado" },
+    { id: 3, title: "Aluno", value: "Aluno" },
+    {
+      id: 4,
+      title: "Comunidade Externa",
+      value: "Comunidade Externa",
+    },
+  ];
+
   return {
     ambienceFilterTypeOptions,
     ambienceFilterAvailabilityOptions,
     solicitationFilterStatusOptions,
     calendarFilterTypeOptions,
     calendarFilterAmbiencesOptions,
+    userFilterTypeOptions,
   };
 };

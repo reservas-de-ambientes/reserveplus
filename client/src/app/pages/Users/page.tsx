@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
-import { PlusIcon } from "@heroicons/react/24/outline";
+import { FunnelIcon, PlusIcon } from "@heroicons/react/24/outline";
 
 import {
   useModalStore,
@@ -16,6 +16,7 @@ import {
   Modal,
   PrivateRouteWrapper,
   Table,
+  UserFilter,
   UserForm,
 } from "@/components";
 import * as D from "./data";
@@ -29,12 +30,20 @@ const Users = () => {
     selectedUser,
     selectUser,
     paginationData,
+    selectedFilter,
+    hasFilteredUsers,
   } = useUserStore();
   const { modalType, toggleVisibility } = useModalStore();
   const { pagination, setPagination } = usePaginationStore();
   const { isVisible, show } = useToastNotificationStore();
 
-  const { query } = userQueries(pagination);
+  const { query, queryWithFilters } = userQueries(pagination, selectedFilter!);
+
+  const handleRemoveFilter = (filter: string) => {
+    const filterData = { ...selectedFilter, [filter]: "" };
+
+    fetchData(queryWithFilters, filterData);
+  };
 
   useEffect(() => {
     setPagination(paginationData || pagination);
@@ -42,9 +51,13 @@ const Users = () => {
 
   useEffect(() => {
     (async () => {
-      fetchData(query);
+      if (hasFilteredUsers) {
+        fetchData(queryWithFilters, selectedFilter);
+      } else {
+        fetchData(query);
+      }
     })();
-  }, []);
+  }, [fetchData, hasFilteredUsers, query, queryWithFilters, selectedFilter]);
 
   return (
     <PrivateRouteWrapper>
@@ -53,6 +66,34 @@ const Users = () => {
           Usuários
         </h1>
         <div className="inline-flex w-full gap-4 sm:w-auto">
+          {selectedFilter && (
+            <>
+              {selectedFilter.type && (
+                <div className="inline-flex items-center p-2 space-x-2 bg-white rounded-lg shadow-md">
+                  <span className="font-medium text-gray-700">
+                    {selectedFilter.type}
+                  </span>
+                  <button
+                    className="px-2 font-medium text-gray-700 border-l border-primary hover:text-red-400"
+                    onClick={() => handleRemoveFilter("type")}
+                  >
+                    X
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+          <div className="relative inline-block ">
+            <FunnelIcon
+              title="Filtrar"
+              onClick={() => toggleVisibility(true, "filter")}
+              className={`inline-flex items-center w-10 h-10 p-2 space-x-2 rounded-lg cursor-pointer ${
+                hasFilteredUsers
+                  ? "bg-secondary text-white"
+                  : "bg-primary text-secondary"
+              }  focus:bg-secondary focus:outline-none`}
+            />
+          </div>
           <Button
             type="button"
             className="inline-flex justify-center w-full px-3 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-primary disabled:cursor-not-allowed disabled:bg-gray-500 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:w-auto sm:text-sm "
@@ -87,6 +128,10 @@ const Users = () => {
             show("Usuário deletado com sucesso.", "success");
           }}
         />
+      ) : modalType === "filter" ? (
+        <Modal>
+          <UserFilter />
+        </Modal>
       ) : (
         <Modal>
           <UserForm />
