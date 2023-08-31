@@ -46,15 +46,8 @@ const Solicitations = () => {
   }, [fetchData, query]);
 
   useEffect(() => {
-    if (!!paginationData) {
-      setPagination(() => ({
-        page: paginationData.page,
-        pageSize: paginationData.pageSize,
-        total: paginationData.total,
-        pageCount: paginationData.pageCount,
-      }));
-    }
-  }, [paginationData, setPagination]);
+    setPagination(paginationData || pagination);
+  }, [paginationData]);
 
   return (
     <PrivateRouteWrapper>
