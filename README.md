@@ -6,6 +6,7 @@ Sistemas de Reservas de ambientes
 
 * Node.js
 * Docker
+* Yarn
 * Outras dependências do projeto
 
 ## Instalação
@@ -19,37 +20,53 @@ Sistemas de Reservas de ambientes
 ```bash
   cd nome-do-projeto
   cd client
-  npm install
+  yarn ou npm install
 ```
 
 3. Instale as dependências do Back-end Teste (server-teste):
 ```bash
   cd nome-do-projeto
   cd server-teste
-  npm install
+  yarn ou npm install
 ```
 
 ## Configuração
 
-1. Entre no client e crie o arquivo .env.local e copie o conteudo do .env.example:
+1. Na raiz do projeto crie o arquivo .env e copie o conteudo do .env.example:
+```bash
+  cd client
+  touch .env
+```
+
+2. Entre no client e crie o arquivo .env.local e copie o conteudo do .env.example:
 ```bash
   cd client
   touch .env.local
 ```
 
-2. No docker-compose.dev.yml, descomente o serviço server_teste e comente o serverDB e o server;
-
-3. Ainda docker-compose.dev.yml, no serviço client mude de server para server_teste no depends_on
-
-4. Rode o comando para criar a network com o nome reservas_network
+3. Entre no server e crie o arquivo .env e copie o conteudo do .env.example:
 ```bash
-  docker network create reservas_network
+  cd client
+  touch .env
 ```
 
 ## Iniciar
 
-1. Rode o comando na raiz do projeto
+1. Para mudar o ambiente mude no arquivo .env na raiz do projeto o ENVIRONMENT
 
 ```bash
-  docker-compose -f docker-compose.dev.yml up --build
+  ENVIRONMENT=development --> Para desenvolvimento
+  ENVIRONMENT=production --> Para produção
+```
+
+2. Apos todos os envs configurados rode o comando para buildar e rodar os containers
+```bash
+  docker-compose -f docker-compose.yml up --build
+```
+
+## Configuração 
+
+1. Rode o comando a seguir para popular o banco de dados com algumas informacoes 
+```bash
+  docker exec -i serverDB psql -U strapi -d strapi < populate.sql
 ```
