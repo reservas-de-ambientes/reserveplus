@@ -20,14 +20,25 @@ Sistemas de Reservas de ambientes
 ```bash
   cd nome-do-projeto
   cd client
-  yarn ou npm install
+  yarn 
+  ou 
+  npm install
 ```
 
-3. Instale as dependências do Back-end Teste (server-teste):
+3. Crie o arquivo .next com o comando:
+```bash
+  yarn build
+  ou
+  npm run build
+```
+
+3. Instale as dependências do Back-end (server):
 ```bash
   cd nome-do-projeto
-  cd server-teste
-  yarn ou npm install
+  cd server
+  yarn 
+  ou 
+  npm install
 ```
 
 ## Configuração
@@ -64,9 +75,28 @@ Sistemas de Reservas de ambientes
   docker-compose -f docker-compose.yml up --build
 ```
 
-## Configuração 
+## Primeiro acesso Strapi
 
-1. Rode o comando a seguir para popular o banco de dados com algumas informacoes 
+1. Crie sua conta ADM no Strapi na rota
+```bash
+  http://0.0.0.0:1337/admin
+```
+
+2. Rode o comando a seguir para popular o banco de dados com algumas informacoes como um usuario Admin, semestres 2023.1 e 2023.2
 ```bash
   docker exec -i serverDB psql -U strapi -d strapi < populate.sql
 ```
+
+3. No Strapi, acesse Setting > Roles
+
+4. No Authenticated, em permissions: 
+- Ambience > Select All
+- Reservation > Select All
+- Semester > Select All
+- Users-permissions > USER > Select All
+
+5. No Public, em permissions: 
+- Ambience > findOne e find
+- Reservation > findOne e find
+- Semester > findOne e find
+- Users-permissions > USER > findOne, find e me
