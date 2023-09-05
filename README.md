@@ -70,9 +70,14 @@ Sistemas de Reservas de ambientes
   ENVIRONMENT=production --> Para produção
 ```
 
-2. Apos todos os envs configurados rode o comando para buildar e rodar os containers
+2. Apos todos os envs configurados rode o comando para buildar as images
 ```bash
-  docker-compose -f docker-compose.yml up --build
+  docker-compose build
+```
+
+3. Apos todos os envs configurados rode o comando para rodar os containers
+```bash
+  docker-compose up
 ```
 
 ## Primeiro acesso Strapi
