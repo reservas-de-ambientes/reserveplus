@@ -4,7 +4,7 @@ Sistemas de Reservas de ambientes
 
 ## Pré-requisitos
 
-* Node.js
+* Node.js versão 16 ou superior
 * Docker
 * Yarn
 * Outras dependências do projeto
@@ -45,7 +45,6 @@ Sistemas de Reservas de ambientes
 
 1. Na raiz do projeto crie o arquivo .env e copie o conteudo do .env.example:
 ```bash
-  cd client
   touch .env
 ```
 
@@ -57,7 +56,7 @@ Sistemas de Reservas de ambientes
 
 3. Entre no server e crie o arquivo .env e copie o conteudo do .env.example:
 ```bash
-  cd client
+  cd server
   touch .env
 ```
 
