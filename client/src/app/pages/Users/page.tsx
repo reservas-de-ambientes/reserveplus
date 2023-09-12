@@ -37,12 +37,12 @@ const Users = () => {
   const { pagination, setPagination } = usePaginationStore();
   const { isVisible, show } = useToastNotificationStore();
 
-  const { query, queryWithFilters } = userQueries(pagination, selectedFilter!);
+  const { query } = userQueries(pagination, selectedFilter!);
 
   const handleRemoveFilter = (filter: string) => {
     const filterData = { ...selectedFilter, [filter]: "" };
 
-    fetchData(queryWithFilters, filterData);
+    fetchData(query, filterData);
   };
 
   useEffect(() => {
@@ -51,13 +51,9 @@ const Users = () => {
 
   useEffect(() => {
     (async () => {
-      if (hasFilteredUsers) {
-        fetchData(queryWithFilters, selectedFilter);
-      } else {
-        fetchData(query);
-      }
+      fetchData(query);
     })();
-  }, [fetchData, hasFilteredUsers, query, queryWithFilters, selectedFilter]);
+  }, []);
 
   return (
     <PrivateRouteWrapper>

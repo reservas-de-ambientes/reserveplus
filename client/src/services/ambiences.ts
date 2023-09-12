@@ -3,7 +3,9 @@ import { api } from "@/services";
 
 export async function getAmbiences(params?: any) {
   try {
-    const response = await api.get(`/ambiences?${params}`);
+    const response = await api.get(
+      params ? `/ambiences?${params}` : "/ambiences"
+    );
 
     return response.data;
   } catch (e: any) {

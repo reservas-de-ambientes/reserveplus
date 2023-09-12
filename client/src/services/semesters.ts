@@ -3,7 +3,9 @@ import { api } from "@/services";
 
 export async function getSemesters(params?: any) {
   try {
-    const response = await api.get(`/semesters?${params}`);
+    const response = await api.get(
+      params ? `/semesters?${params}` : "/semesters"
+    );
 
     return response.data;
   } catch (e: any) {

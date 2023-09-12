@@ -2,7 +2,9 @@ import { api } from "@/services";
 
 export async function getReservations(params?: string) {
   try {
-    const response = await api.get(`/reservations?${params}`);
+    const response = await api.get(
+      params ? `/reservations?${params}` : "/reservations"
+    );
 
     return response.data;
   } catch (e: any) {

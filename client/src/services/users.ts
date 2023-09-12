@@ -3,7 +3,7 @@ import { api } from "@/services";
 
 export async function getUsers(params?: any) {
   try {
-    const response = await api.get(`/users?${params}`);
+    const response = await api.get(params ? `/users?${params}` : "/users");
 
     return response.data;
   } catch (e: any) {
