@@ -43,20 +43,20 @@ module.exports = ({ env }) => {
         user: env("DATABASE_USERNAME", "strapi"),
         password: env("DATABASE_PASSWORD", "strapi"),
         host: !!process.env.DATABASE_URL
-          ? env("DATABASE_HOST", "0.0.0.0")
-          : config.host,
+          ? config.host
+          : env("DATABASE_HOST", "0.0.0.0"),
         port: !!process.env.DATABASE_URL
-          ? env.int("DATABASE_PORT", 5432)
-          : config.port,
+          ? config.port
+          : env.int("DATABASE_PORT", 5432),
         database: !!process.env.DATABASE_URL
-          ? env("DATABASE_NAME", "strapi")
-          : config.database,
+          ? config.database
+          : env("DATABASE_NAME", "strapi"),
         user: !!process.env.DATABASE_URL
-          ? env("DATABASE_USERNAME", "strapi")
-          : config.user,
+          ? config.user
+          : env("DATABASE_USERNAME", "strapi"),
         password: !!process.env.DATABASE_URL
-          ? env("DATABASE_PASSWORD", "strapi")
-          : config.password,
+          ? config.password
+          : env("DATABASE_PASSWORD", "strapi"),
         ssl: env.bool("DATABASE_SSL", false) && {
           key: env("DATABASE_SSL_KEY", undefined),
           cert: env("DATABASE_SSL_CERT", undefined),
