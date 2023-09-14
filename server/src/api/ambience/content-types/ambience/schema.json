@@ -14,29 +14,42 @@
   "attributes": {
     "value": {
       "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {}
     },
     "type": {
       "type": "enumeration",
-      "enum": ["laboratory", "class", "others"],
-      "required": true
+      "enum": [
+        "laboratory",
+        "class",
+        "others"
+      ],
+      "required": true,
+      "pluginOptions": {}
     },
     "availability": {
       "type": "enumeration",
-      "enum": ["available", "unavailable"],
-      "required": true
+      "enum": [
+        "available",
+        "unavailable"
+      ],
+      "required": true,
+      "pluginOptions": {}
     },
     "dependsOnReservation": {
       "type": "boolean",
       "default": true,
-      "required": true
+      "required": true,
+      "pluginOptions": {}
     },
     "description": {
       "type": "text",
-      "maxLength": 255
+      "maxLength": 255,
+      "pluginOptions": {}
     },
     "lock": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {}
     },
     "responsibles": {
       "type": "relation",
@@ -44,10 +57,12 @@
       "target": "plugin::users-permissions.user"
     },
     "numberOfMachines": {
-      "type": "integer"
+      "type": "integer",
+      "pluginOptions": {}
     },
     "peopleCapacity": {
-      "type": "integer"
+      "type": "integer",
+      "pluginOptions": {}
     },
     "reservations": {
       "type": "relation",

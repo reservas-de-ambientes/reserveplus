@@ -31,7 +31,11 @@
     },
     "status": {
       "type": "enumeration",
-      "enum": ["disapproved", "pending", "approved"],
+      "enum": [
+        "disapproved",
+        "pending",
+        "approved"
+      ],
       "required": true,
       "default": "pending"
     },
