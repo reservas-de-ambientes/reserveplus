@@ -34,14 +34,14 @@ module.exports = ({ env }) => {
     },
     postgres: {
       connection: {
-        connectionString: env("DATABASE_URL"),
+        // connectionString: env("DATABASE_URL"),
         // host: env("DATABASE_HOST", "0.0.0.0"),
-        // port: env.int("DATABASE_PORT", 5432),
+        port: env.int("DATABASE_PORT", 5432),
         // database: env("DATABASE_NAME", "strapi"),
         // user: env("DATABASE_USERNAME", "strapi"),
         // password: env("DATABASE_PASSWORD", "strapi"),
         host: config.host,
-        port: config.port,
+        // port: config.port,
         database: config.database,
         user: config.user,
         password: config.password,
@@ -78,6 +78,8 @@ module.exports = ({ env }) => {
       useNullAsDefault: true,
     },
   };
+
+  console.log("DATABASE_URL", env("DATABASE_URL"), connections[client], config);
 
   return {
     connection: {
