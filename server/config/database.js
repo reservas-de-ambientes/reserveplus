@@ -42,7 +42,11 @@ module.exports = ({ env }) => {
           cert: env("DATABASE_SSL_CERT", undefined),
           ca: env("DATABASE_SSL_CA", undefined),
           capath: env("DATABASE_SSL_CAPATH", undefined),
-          cipher: env("DATABASE_SSL_CIPHER", undefined),
+          // cipher: env("DATABASE_SSL_CIPHER", undefined),
+          cipher: env(
+            "DATABASE_SSL_CIPHER",
+            "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
+          ),
           rejectUnauthorized: env.bool(
             "DATABASE_SSL_REJECT_UNAUTHORIZED",
             true
@@ -66,8 +70,6 @@ module.exports = ({ env }) => {
       useNullAsDefault: true,
     },
   };
-
-  console.log("DATABASE_URL", env("DATABASE_URL"), connections[client]);
 
   return {
     connection: {
