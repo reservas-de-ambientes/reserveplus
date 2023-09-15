@@ -15,7 +15,7 @@ import {
   Button,
   ConfirmationModal,
   Modal,
-  PrivateRouteWrapper,
+  // PrivateRouteWrapper,
   SemesterForm,
   Table,
 } from "@/components";
@@ -47,7 +47,8 @@ const Semesters = () => {
   }, []);
 
   return (
-    <PrivateRouteWrapper>
+    // <PrivateRouteWrapper>
+    <>
       <div className="flex flex-wrap items-center justify-between px-2 mx-2 mb-4 sm:flex-nowrap sm:mx-0">
         <h1 className="font-mono text-3xl font-semibold text-primary">
           Semestres
@@ -92,7 +93,8 @@ const Semesters = () => {
           <SemesterForm />
         </Modal>
       )}
-    </PrivateRouteWrapper>
+    </>
+    // </PrivateRouteWrapper>
   );
 };
 

@@ -22,7 +22,7 @@ export default function RootLayout({
       <head />
       <body className="bg-slate-300">
         <Providers>
-          {pathname !== "/signIn" ? (
+          {pathname !== "/pages/SignIn" ? (
             <>
               <Navbar />
               <main className="mx-auto mt-5 max-w-7xl sm:px-6 lg:px-8 ">

@@ -17,7 +17,7 @@ import {
   Button,
   ConfirmationModal,
   Modal,
-  PrivateRouteWrapper,
+  // PrivateRouteWrapper,
   Table,
 } from "@/components";
 

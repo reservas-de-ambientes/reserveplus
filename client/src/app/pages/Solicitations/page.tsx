@@ -17,7 +17,7 @@ import {
   Modal,
   SolicitationViewModal,
   Table,
-  PrivateRouteWrapper,
+  // PrivateRouteWrapper,
   SolicitationFilter,
 } from "@/components";
 
@@ -50,7 +50,8 @@ const Solicitations = () => {
   }, [paginationData]);
 
   return (
-    <PrivateRouteWrapper>
+    // <PrivateRouteWrapper>
+    <>
       <div className="flex flex-wrap items-center justify-between px-2 mx-2 mb-4 sm:flex-nowrap sm:mx-0">
         <h1 className="font-mono text-3xl font-semibold text-primary">
           Solicitações
@@ -133,7 +134,8 @@ const Solicitations = () => {
           solicitationDisapproved
         />
       )}
-    </PrivateRouteWrapper>
+    </>
+    // </PrivateRouteWrapper>
   );
 };
 

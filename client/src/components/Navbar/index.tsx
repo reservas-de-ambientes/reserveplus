@@ -92,7 +92,7 @@ const Navbar = () => {
                                 localStorage.removeItem("reservas-token");
                                 signOut({
                                   redirect: true,
-                                  callbackUrl: "/signIn",
+                                  callbackUrl: "/pages/SignIn",
                                 });
                               }}
                             >
@@ -104,7 +104,7 @@ const Navbar = () => {
                         <Menu.Items className="absolute right-0 z-50 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-black ring-opacity-5 focus:outline-none">
                           <Menu.Item>
                             <Link
-                              href="/signIn"
+                              href="/pages/SignIn"
                               className="block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-secondary hover:text-white"
                             >
                               Fazer Login
@@ -180,7 +180,7 @@ const Navbar = () => {
                       localStorage.removeItem("reservas-token");
                       signOut({
                         redirect: true,
-                        callbackUrl: "/signIn",
+                        callbackUrl: "/pages/SignIn",
                       });
                     }}
                   >
@@ -193,7 +193,7 @@ const Navbar = () => {
                 <div className="px-2 mt-3 space-y-1">
                   <Disclosure.Button
                     as={Link}
-                    href="/signIn"
+                    href="/pages/SignIn"
                     className="block px-3 py-2 text-base font-medium text-gray-400 rounded-md cursor-pointer hover:text-white hover:bg-gray-700"
                   >
                     Fazer Login

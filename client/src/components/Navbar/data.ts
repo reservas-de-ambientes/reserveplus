@@ -10,7 +10,7 @@ export const GetRoutes = () => {
     },
     {
       name: "Reservar",
-      route: "/reservar",
+      route: "/pages/Reserve",
     },
   ];
 
@@ -18,26 +18,26 @@ export const GetRoutes = () => {
     if (session?.user?.type === "Docente ou TAE") {
       routes.push({
         name: "Ambientes",
-        route: "/ambientes",
+        route: "/pages/Ambiences",
       });
       routes.push({
         name: "Solicitações",
-        route: "/solicitacoes",
+        route: "/pages/Solicitations",
       });
     } else {
       routes.push({
         name: "Ambientes",
-        route: "/ambientes",
+        route: "/pages/Ambiences",
       });
     }
     if (session?.user?.isAdmin) {
       routes.push({
         name: "Semestres",
-        route: "/semestres",
+        route: "/pages/Semesters",
       });
       routes.push({
         name: "Usuários",
-        route: "/usuarios",
+        route: "/pages/Users",
       });
     }
   }
