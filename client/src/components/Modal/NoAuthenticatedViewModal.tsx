@@ -13,7 +13,7 @@ const NoAuthenticatedViewModal = () => {
 
   const handleLoginClick = () => {
     toggleVisibility(false);
-    router.push("/signIn");
+    router.push("/pages/SignIn");
   };
 
   return (
