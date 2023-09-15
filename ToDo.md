@@ -1,26 +1,9 @@
 
 ----------------------------------DOING-----------------------------------------
 -- GERAL
-[x] - Criar isAdmin no user no Strapi como boolean
-[x] - Pagina semestre vai ser apenas para usuario admin
--- AMBIENTES
-[x] - Criar CRUD em ambientes para o usuario admin
--- HOME
-[x] - Criar tela
-[x] - Popular imagens e escrever textos
--- CALENDARIO
-[x] - Bug em reservas semestrais quando muda de semestre
--- SOLICITACAO
-[x] - Bug na paginacao
--- SEMESTRES
-[x] - Criar tela
-[x] - Criar CRUD de semestres
-[x] - Regra data final sempre tem que ser maior que a data inicial
-[x] - Ao colocar um semestre como atual, todos os outros tem que atualizar para false
--- USUARIOS
-[x] - Criar tela
-[x] - Criar CRUD de usuarios
-[x] - Criar Filtros
+[] - Adicionar rotas privadas novamente
+[] - Conseguir mudar as urls em prod
+[] - Personalizar o Strapi
 --------------------------------------------------------------------------------
 
 ------------------------------------DO------------------------------------------
@@ -32,6 +15,12 @@
 --------------------------------------------------------------------------------
 
 -----------------------------------DONE-----------------------------------------
+-- GERAL
+[x] - Criar isAdmin no user no Strapi como boolean
+[x] - Pagina semestre vai ser apenas para usuario admin
+-- HOME
+[x] - Criar tela
+[x] - Popular imagens e escrever textos
 -- CALENDARIO
 [x] - Se tiver um filtro no calendar por sala, o modal vim com a sala ja preenchida
 [x] - Esquema de mudar de cor a reserva
@@ -41,6 +30,7 @@
 [x] - Mudar nome "Calendário" para "Reservar"
 [x] - Deixar o filtro ativo como default no Calendario
 [x] - Bloquear botao filtro para sem filtros
+[x] - Bug em reservas semestrais quando muda de semestre
 -- SOLICITACAO
 [x] - Mudar o Status para mais proximo das actions
 [x] - Tooltip para quando uma solicitacao for aprovada e reprovada
@@ -48,11 +38,22 @@
 [x] - Icone do Status mais nome
 [x] - Criar campo novo para motivo de reprovacao no banco
 [x] - Filtro ativo do lado de fora, com a opção de tirar o filtro
+[x] - Bug na paginacao
+-- SEMESTRES
+[x] - Criar tela
+[x] - Criar CRUD de semestres
+[x] - Regra data final sempre tem que ser maior que a data inicial
+[x] - Ao colocar um semestre como atual, todos os outros tem que atualizar para false
 -- AMBIENTES
 [x] - Adicionar a opcao de Sala, ficando: Lab, Sala e Outros no frontend e backend
 [x] - Filtro ativo do lado de fora, com a opção de tirar o filtro
+[x] - Criar CRUD em ambientes para o usuario admin
 -- LOGIN
 [x] - Mudar nome Salvar para Acessar
+-- USUARIOS
+[x] - Criar tela
+[x] - Criar CRUD de usuarios
+[x] - Criar Filtros
 --------------------------------------------------------------------------------
 
 ---------------------------------STANDBY----------------------------------------

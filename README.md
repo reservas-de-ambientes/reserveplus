@@ -4,8 +4,9 @@ Sistemas de Reservas de ambientes
 
 ## Pré-requisitos
 
-* Node.js versão 16 ou superior
+* Node.js v16 ou superior
 * Docker
+* Npm
 * Yarn
 * Outras dependências do projeto
 
@@ -60,6 +61,9 @@ Sistemas de Reservas de ambientes
   touch .env
 ```
 
+</br>
+<b>OBS: Lembre sempre de mudar onde está tobemodified para suas credencias</b>
+
 ## Iniciar
 
 1. Para mudar o ambiente mude no arquivo .env na raiz do projeto o ENVIRONMENT
@@ -74,7 +78,7 @@ Sistemas de Reservas de ambientes
   docker-compose build
 ```
 
-3. Apos todos os envs configurados rode o comando para rodar os containers
+3. Apos buildar com sucesse rode o comando para rodar os containers
 ```bash
   docker-compose up
 ```
@@ -86,9 +90,9 @@ Sistemas de Reservas de ambientes
   http://0.0.0.0:1337/admin
 ```
 
-2. Rode o comando a seguir para popular o banco de dados com algumas informacoes como um usuario Admin, semestres 2023.1 e 2023.2
+2. Rode o comando a seguir para popular o banco de dados com algumas informacoes como um usuario Admin, semestres 2023.1 e 2023.2. Obs: Altere o DATABASE_NAME e DATABASE_USERNAME por suas credencias, mas mesmas do .env da raiz.
 ```bash
-  docker exec -i serverDB psql -U strapi -d strapi < populate.sql
+  docker exec -i serverDB psql -U <DATABASE_NAME> -d <DATABASE_USERNAME> < populate.sql
 ```
 
 3. No Strapi, acesse Setting > Roles
