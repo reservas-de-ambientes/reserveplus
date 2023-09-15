@@ -11,6 +11,8 @@ const PrivateRouteWrapper = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
   const { isAuthenticated } = useAuth();
 
+  console.log("isAuthenticated", { router, pathname, isAuthenticated });
+
   useEffect(() => {
     if (isAuthenticated) {
       router.replace(pathname || "/");
