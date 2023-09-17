@@ -83,6 +83,9 @@ Sistemas de Reservas de ambientes
   docker-compose up
 ```
 
+</br>
+<b>OBS: Pode acontecer de demorar um pouco de subir o container do Strapi (Server), aguarde um pouco.</b>
+
 ## Primeiro acesso Strapi
 
 1. Crie sua conta ADM no Strapi na rota
