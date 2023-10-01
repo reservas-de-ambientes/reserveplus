@@ -3,7 +3,7 @@
 Sistemas de Reservas de ambientes
 
 <br/>
-![Página de Reserva](https://github.com/igor-cotrim/reserveplus/blob/main/imgs/reserve-page?raw=true)
+![Página de Reserva](https://github.com/igor-cotrim/reserveplus/blob/main/imgs/reserve-page.png?raw=true)
 
 ## Pré-requisitos
 
@@ -86,7 +86,7 @@ Sistemas de Reservas de ambientes
 </br>
 <b>OBS: Pode acontecer de demorar um pouco de subir o container do Strapi (Server), aguarde um pouco. Até aparecer isso no terminal do Docker</b>
 </br>
-![Server está pronto](https://github.com/igor-cotrim/reserveplus/blob/main/imgs/server-terminal-is-ready?raw=true)
+![Server está pronto](https://github.com/igor-cotrim/reserveplus/blob/main/imgs/server-terminal-is-ready.png?raw=true)
 
 
 ## Primeiro acesso Strapi
