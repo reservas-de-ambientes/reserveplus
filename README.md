@@ -1,6 +1,9 @@
-# Reservas
+# Reserve+
 
 Sistemas de Reservas de ambientes
+
+<br/>
+![Página de Reserva](https://github.com/igor-cotrim/reserveplus/blob/main/imgs/reserve-page?raw=true)
 
 ## Pré-requisitos
 
@@ -24,13 +27,6 @@ Sistemas de Reservas de ambientes
   yarn 
   ou 
   npm install
-```
-
-3. Crie o arquivo .next com o comando:
-```bash
-  yarn build
-  ou
-  npm run build
 ```
 
 3. Instale as dependências do Back-end (server):
@@ -60,9 +56,13 @@ Sistemas de Reservas de ambientes
   cd server
   touch .env
 ```
-
 </br>
-<b>OBS: Lembre sempre de mudar onde está tobemodified para suas credencias</b>
+<b>OBS: Caso queira mudar as informações do banco de dados mude no .env da raiz e no .env do server as seguintes variáveis de ambiente: </b>
+<ul>
+<li>DATABASE_NAME</li>
+<li>DATABASE_USERNAME</li>
+<li>DATABASE_PASSWORD</li>
+</ul>
 
 ## Iniciar
 
@@ -84,7 +84,10 @@ Sistemas de Reservas de ambientes
 ```
 
 </br>
-<b>OBS: Pode acontecer de demorar um pouco de subir o container do Strapi (Server), aguarde um pouco.</b>
+<b>OBS: Pode acontecer de demorar um pouco de subir o container do Strapi (Server), aguarde um pouco. Até aparecer isso no terminal do Docker</b>
+</br>
+![Server está pronto](https://github.com/igor-cotrim/reserveplus/blob/main/imgs/server-terminal-is-ready?raw=true)
+
 
 ## Primeiro acesso Strapi
 
@@ -98,7 +101,7 @@ Sistemas de Reservas de ambientes
   docker exec -i serverDB psql -U <DATABASE_NAME> -d <DATABASE_USERNAME> < populate.sql
 ```
 
-3. No Strapi, acesse Setting > Roles
+3. No Strapi, acesse Settings > USERS & PERMISSIONS PLUGIN > Roles
 
 4. No Authenticated, em permissions: 
 - Ambience > Select All
