@@ -2,9 +2,6 @@
 
 Sistemas de Reservas de ambientes
 
-<br/>
-![Página de Reserva](https://github.com/igor-cotrim/reserveplus/blob/main/imgs/reserve-page.png?raw=true)
-
 ## Pré-requisitos
 
 * Node.js v16 ou superior
@@ -84,10 +81,8 @@ Sistemas de Reservas de ambientes
 ```
 
 </br>
-<b>OBS: Pode acontecer de demorar um pouco de subir o container do Strapi (Server), aguarde um pouco. Até aparecer isso no terminal do Docker</b>
-</br>
-![Server está pronto](https://github.com/igor-cotrim/reserveplus/blob/main/imgs/server-terminal-is-ready.png?raw=true)
-
+<b>OBS: Pode acontecer de demorar um pouco de subir o container do Strapi (Server), aguarde um pouco. Até aparecer um aviso que o projeto está rodando na porta http://localhost:1337 ou http://0.0.0.0:1337 no terminal do Docker
+</b>
 
 ## Primeiro acesso Strapi
 
