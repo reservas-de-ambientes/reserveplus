@@ -1,5 +1,7 @@
 import { ambienceApiModel, ambienceModel } from "@/models";
 
+export const orderInList = ["laboratory", "class", "others"];
+
 export const findAmbience = (id: number, ambiences: ambienceModel[]) => {
   const ambience = ambiences?.find((ambience) => ambience.id === id);
 
@@ -18,6 +20,7 @@ export const formatAmbienceData = (
       ? "Sim"
       : "Não",
     description: ambience.attributes.description,
+    computerSoftwares: ambience.attributes.computerSoftwares,
     numberOfMachines: ambience.attributes.numberOfMachines,
     peopleCapacity: ambience.attributes.peopleCapacity,
     lock: ambience.attributes.lock,

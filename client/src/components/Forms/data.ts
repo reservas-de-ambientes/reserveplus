@@ -1,15 +1,30 @@
+import { orderInList } from "@/utils";
 import { useAmbiencesStore, useUserStore } from "@/store";
 
 export const FormsOptions = () => {
-  const { ambiences, selectedAmbience } = useAmbiencesStore();
+  const { ambiences } = useAmbiencesStore();
   const { users } = useUserStore();
 
   const reservationAmbienceOptions = ambiences
+    .sort((a, b) => {
+      const indexA = orderInList.indexOf(a.type);
+      const indexB = orderInList.indexOf(b.type);
+
+      return indexA - indexB;
+    })
     .filter((ambience) => ambience.dependsOnReservation)
     .map((ambience) => ({
       id: ambience.id,
       value: ambience.id.toString(),
-      title: ambience.value,
+      title: `${ambience.value} ${
+        ambience.type === "laboratory"
+          ? "- Número de máquinas: " + ambience.numberOfMachines
+          : ""
+      } ${
+        !!ambience.peopleCapacity
+          ? "- Capacidade de pessoas: " + ambience.peopleCapacity
+          : ""
+      }`,
     }));
 
   const ambienceResponsiblesOptions = users

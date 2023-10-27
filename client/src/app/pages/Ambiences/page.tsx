@@ -101,6 +101,19 @@ const Ambiences = () => {
                   </button>
                 </div>
               )}
+              {selectedFilter.numberOfMachines && (
+                <div className="inline-flex items-center p-2 space-x-2 bg-white rounded-lg shadow-md">
+                  <span className="font-medium text-gray-700">
+                    {selectedFilter.numberOfMachines}
+                  </span>
+                  <button
+                    className="px-2 font-medium text-gray-700 border-l border-primary hover:text-red-400"
+                    onClick={() => handleRemoveFilter("numberOfMachines")}
+                  >
+                    X
+                  </button>
+                </div>
+              )}
               {selectedFilter.availability && (
                 <div className="inline-flex items-center p-2 space-x-2 bg-white rounded-lg shadow-md">
                   <span className="font-medium text-gray-700">

@@ -10,14 +10,18 @@ import {
 
 import { useAmbiencesStore, useModalStore } from "@/store";
 import { useAuth } from "@/hooks";
+import { orderInList } from "@/utils";
 
 export const Data = () => {
   const { ambiences } = useAmbiencesStore();
 
   return {
-    data: ambiences.map((ambience) => ({
-      ...ambience,
-    })),
+    data: ambiences.sort((a, b) => {
+      const indexA = orderInList.indexOf(a.type);
+      const indexB = orderInList.indexOf(b.type);
+
+      return indexA - indexB;
+    }),
     columns: [
       { Header: "Ambiente", accessor: "value" },
       {
@@ -39,6 +43,11 @@ export const Data = () => {
           ) : (
             <XCircleIcon className="w-full text-red-400 h-7 " />
           ),
+      },
+      {
+        Header: "Número de Maquinas",
+        accessor: "numberOfMachines",
+        Cell: ({ value }: any) => (!!value ? value : "Não possui"),
       },
       {
         Header: "Responsáveis",

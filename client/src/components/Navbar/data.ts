@@ -5,7 +5,7 @@ export const GetRoutes = () => {
 
   const routes = [
     {
-      name: "Home",
+      name: "Tela Inicial",
       route: "/",
     },
     {

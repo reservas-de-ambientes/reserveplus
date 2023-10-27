@@ -17,10 +17,10 @@ export const usePaginationStore = create<PaginationStore>((set) => ({
   pagination: {
     page: 1,
     pageCount: 1,
-    pageSize: 8,
+    pageSize: 10,
     total: 0,
   },
   setPagination: (newPage) => set({ pagination: newPage }),
   resetPagination: () =>
-    set({ pagination: { page: 1, pageCount: 1, pageSize: 8, total: 0 } }),
+    set({ pagination: { page: 1, pageCount: 1, pageSize: 10, total: 0 } }),
 }));

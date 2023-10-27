@@ -1,15 +1,22 @@
 
 ----------------------------------DOING-----------------------------------------
--- GERAL
-[] - Adicionar rotas privadas novamente
-[] - Conseguir mudar as urls em prod
-[] - Personalizar o Strapi
+-- AMBIENTES
+[x] - Colocar Número de maquinas na tabela de ambientes;
+[x] - Ordenar listagem: Lab -> sala -> outros;
+[x] - Filtro para numero de maquinas quando o ambiente for um laboratório;
+
+-- CALENDARIO
+[x] - Ordenar a listagem de ambientes;
+[x] - No formulário de reservas, mostrar para o usuário a quantidade de maquinas de um laboratório e a capacidade de pessoas;
+[x] - Na entidade de ambientes, colocar uma propriedade para softwares que tem nos computadores do laboratório; Ex: VSCODE, Linux Windows, AutoCAD, etc;
 --------------------------------------------------------------------------------
 
 ------------------------------------DO------------------------------------------
 -- GERAL
 [] - Atualizar o Next
 [] - Comecar a utilizar o react-query para fetch de dados e fazer menos reqs e deixar dados em cache
+[] - Adicionar rotas privadas novamente
+[] - Personalizar o Strapi
 -- AMBIENTES
 [] - Criar input de pesquisa
 --------------------------------------------------------------------------------
@@ -57,7 +64,6 @@
 --------------------------------------------------------------------------------
 
 ---------------------------------STANDBY----------------------------------------
-[] - Bloquear mexer no campo inicio e fim no modal de cadastro
 [] - Quando tiver mais de 3 reservas no mesmo horario, aparecer um botao q vai para o visualizacao de dia no semana
 [] - Configuracao de horarios no calendario:
       Configuracao de calendario no backend

@@ -11,13 +11,8 @@ import * as D from "./data";
 
 const AmbienceForm = () => {
   const { toggleVisibility, modalType } = useModalStore();
-  const {
-    ambiences,
-    selectedAmbience,
-    clearErrorMessage,
-    addAmbience,
-    editAmbience,
-  } = useAmbiencesStore();
+  const { selectedAmbience, clearErrorMessage, addAmbience, editAmbience } =
+    useAmbiencesStore();
   const [formData, setFormData] = useState(
     selectedAmbience ? selectedAmbience : ({} as ambienceModel)
   );
@@ -174,7 +169,7 @@ const AmbienceForm = () => {
                   onChange={setResponsiblesSelected}
                 />
                 {(selectedAmbience?.numberOfMachines ||
-                  modalType === "add") && (
+                  formData.type === "laboratory") && (
                   <Input
                     label="Número de máquinas"
                     name="value"
@@ -187,6 +182,23 @@ const AmbienceForm = () => {
                       clearErrorMessage();
                     }}
                     value={formData?.numberOfMachines}
+                    disabled={modalType === "view"}
+                    required={formData.type === "laboratory"}
+                  />
+                )}
+                {(selectedAmbience?.numberOfMachines ||
+                  formData.type === "laboratory") && (
+                  <Textarea
+                    label="Softwares nos computadores"
+                    name="computerSoftwares"
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                      setFormData((prev) => ({
+                        ...prev,
+                        computerSoftwares: e.target.value,
+                      }));
+                      clearErrorMessage();
+                    }}
+                    value={formData?.computerSoftwares}
                     disabled={modalType === "view"}
                   />
                 )}
