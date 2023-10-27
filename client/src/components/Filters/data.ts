@@ -1,3 +1,4 @@
+import { orderInList } from "@/utils";
 import { useAmbiencesStore } from "@/store";
 
 export const filtersOptions = () => {
@@ -61,6 +62,12 @@ export const filtersOptions = () => {
   ];
 
   const calendarFilterAmbiencesOptions = ambiences
+    .sort((a, b) => {
+      const indexA = orderInList.indexOf(a.type);
+      const indexB = orderInList.indexOf(b.type);
+
+      return indexA - indexB;
+    })
     .filter((ambience) => ambience.dependsOnReservation === "Sim")
     .map((ambience) => ({
       id: ambience.id,

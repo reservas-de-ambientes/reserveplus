@@ -14,6 +14,7 @@ export type ambienceModel = {
   availability: string;
   dependsOnReservation: string | boolean;
   description?: string;
+  computerSoftwares?: string;
   numberOfMachines?: number;
   peopleCapacity?: number;
   lock?: string;
@@ -26,6 +27,7 @@ export type ambienceApiModel = {
     createdAt: string;
     dependsOnReservation: string;
     description?: string;
+    computerSoftwares?: string;
     lock?: string;
     numberOfMachines?: number;
     peopleCapacity?: number;

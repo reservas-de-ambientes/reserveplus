@@ -46,7 +46,7 @@ const ModalContainer = ({ children, blocked = false }: ModalContainerProps) => {
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <Dialog.Panel className="relative w-full overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:max-w-2xl">
-                {children}
+                <div className="overflow-y-auto max-h-[86vh]">{children}</div>
               </Dialog.Panel>
             </Transition.Child>
           </div>

@@ -4,7 +4,7 @@ import { buildQuery } from "@/utils";
 
 export const ambienceQueries = (
   pagination?: PaginationProps,
-  filterData?: Pick<ambienceModel, "type" | "availability">
+  filterData?: Pick<ambienceModel, "type" | "availability" | "numberOfMachines">
 ) => {
   const query = buildQuery({
     populate: {
@@ -12,9 +12,10 @@ export const ambienceQueries = (
         populate: "*",
       },
     },
+    sort: ["value:asc"],
     pagination: {
       page: pagination?.page || 1,
-      pageSize: pagination?.pageSize || 8,
+      pageSize: pagination?.pageSize || 10,
     },
   });
 
@@ -24,6 +25,7 @@ export const ambienceQueries = (
       page: 1,
       pageSize: 999,
     },
+    sort: ["value:asc"],
     filters: {
       dependsOnReservation: {
         $eq: "Sim",
@@ -48,10 +50,15 @@ export const ambienceQueries = (
           $eq: filterData.availability,
         },
       }),
+      ...(filterData?.numberOfMachines && {
+        numberOfMachines: {
+          $eq: filterData.numberOfMachines,
+        },
+      }),
     },
     pagination: {
       page: pagination?.page || 1,
-      pageSize: pagination?.pageSize || 8,
+      pageSize: pagination?.pageSize || 10,
     },
   });
 

@@ -7,7 +7,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useAmbiencesStore, useModalStore, usePaginationStore } from "@/store";
 import { ambienceModel } from "@/models";
 import { ambienceQueries } from "@/queries";
-import { Button, Select } from "@/components";
+import { Button, Input, Select } from "@/components";
 
 import * as D from "./data";
 
@@ -21,7 +21,7 @@ const AmbienceFilter = () => {
       ({
         type: "",
         availability: "",
-      } as Pick<ambienceModel, "type" | "availability">)
+      } as Pick<ambienceModel, "type" | "availability" | "numberOfMachines">)
   );
 
   const { query, queryWithFilters } = ambienceQueries(pagination, filterData);
@@ -69,6 +69,20 @@ const AmbienceFilter = () => {
                   }}
                   value={filterData.type}
                 />
+                {filterData.type === "laboratory" && (
+                  <Input
+                    label="Número de máquinas"
+                    name="value"
+                    type="number"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      setFilterData((prev) => ({
+                        ...prev,
+                        numberOfMachines: Number(e.target.value),
+                      }));
+                    }}
+                    value={filterData.numberOfMachines}
+                  />
+                )}
                 <Select
                   label="Disponibilidade"
                   name="availability"

@@ -15,7 +15,10 @@ interface IAmbiences {
   hasFilteredAmbiences: boolean;
   errorMessage: string;
   selectedAmbience: ambienceModel | null;
-  selectedFilter: Pick<ambienceModel, "type" | "availability"> | null;
+  selectedFilter: Pick<
+    ambienceModel,
+    "type" | "availability" | "numberOfMachines"
+  > | null;
   paginationData: PaginationProps | null;
   isLoading: boolean;
   clearErrorMessage: () => void;
@@ -46,7 +49,9 @@ export const useAmbiencesStore = create<IAmbiences>((set, get) => ({
       paginationData: meta.pagination,
       hasFilteredAmbiences: !!(
         filters &&
-        (filters.type !== "" || filters.availability !== "")
+        (filters.type !== "" ||
+          filters.availability !== "" ||
+          filters.numberOfMachines !== "")
       )
         ? true
         : false,
@@ -80,7 +85,7 @@ export const useAmbiencesStore = create<IAmbiences>((set, get) => ({
       },
       pagination: {
         page: 1,
-        pageSize: 8,
+        pageSize: 10,
       },
     });
 
@@ -104,7 +109,7 @@ export const useAmbiencesStore = create<IAmbiences>((set, get) => ({
       },
       pagination: {
         page: 1,
-        pageSize: 8,
+        pageSize: 10,
       },
     });
 
@@ -128,7 +133,7 @@ export const useAmbiencesStore = create<IAmbiences>((set, get) => ({
       },
       pagination: {
         page: 1,
-        pageSize: 8,
+        pageSize: 10,
       },
     });
 

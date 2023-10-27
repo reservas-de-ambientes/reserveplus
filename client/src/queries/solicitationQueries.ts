@@ -28,7 +28,7 @@ export const solicitationQueries = (
     },
     pagination: {
       page: pagination?.page || 1,
-      pageSize: pagination?.pageSize || 8,
+      pageSize: pagination?.pageSize || 10,
     },
   });
 
@@ -57,7 +57,7 @@ export const solicitationQueries = (
     },
     pagination: {
       page: pagination?.page || 1,
-      pageSize: pagination?.pageSize || 8,
+      pageSize: pagination?.pageSize || 10,
     },
   });
 
